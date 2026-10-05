@@ -4,7 +4,11 @@ import argparse
 import os
 import tarfile
 import tempfile
+from contextlib import contextmanager
+from http.client import HTTPException
 from pathlib import Path
+from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
 
 if __package__:
     from .check_missing_assets import (
@@ -16,6 +20,79 @@ else:
         PROJECT_ROOT, default_image_directory, load_asset_manifest,
         safe_relative_path, staged_path,
     )
+
+
+@contextmanager
+def open_remote_response(url):
+    try:
+        import requests
+    except ImportError:
+        request = Request(url, headers={"Accept-Encoding": "identity"})
+        try:
+            with urlopen(request, timeout=60) as response:
+                yield response, response.headers
+        except HTTPException as error:
+            raise OSError(f"Remote archive stream failed: {error}") from error
+        return
+
+    from urllib3.exceptions import HTTPError as StreamError
+
+    try:
+        with requests.get(
+            url, stream=True, timeout=(10, 60),
+            headers={"Accept-Encoding": "identity"},
+        ) as response:
+            response.raise_for_status()
+            response.raw.decode_content = True
+            yield response.raw, response.headers
+    except (requests.RequestException, StreamError, HTTPException) as error:
+        raise OSError(f"Remote archive stream failed: {error}") from error
+
+
+@contextmanager
+def open_archive(archive_path=None, archive_url=None):
+    has_local_archive = archive_path is not None
+    has_remote_archive = archive_url is not None
+    if has_local_archive == has_remote_archive:
+        raise ValueError("Provide exactly one local archive path or remote URL")
+    if archive_url is not None:
+        url_parts = urlsplit(archive_url)
+        if url_parts.scheme not in ("http", "https") or not url_parts.hostname:
+            raise ValueError("Archive URL must use HTTP or HTTPS and include a hostname")
+        print(f"Streaming URL: {archive_url}", flush=True)
+        with open_remote_response(archive_url) as (stream, headers):
+            content_length = headers.get("Content-Length")
+            if content_length is not None:
+                print(f"Reported remote size: {content_length} bytes", flush=True)
+                try:
+                    content_length = int(content_length)
+                except ValueError:
+                    content_length = None
+                if content_length is not None and content_length < 0:
+                    content_length = None
+            else:
+                print("Remote size: Content-Length not provided", flush=True)
+            with tarfile.open(fileobj=stream, mode="r|*") as archive:
+                yield archive, content_length
+    else:
+        archive_path = Path(archive_path)
+        if not archive_path.is_file() or not tarfile.is_tarfile(archive_path):
+            raise ValueError(f"Not a readable tar archive: {archive_path}")
+        print(f"Archive: {archive_path.resolve()}", flush=True)
+        with tarfile.open(archive_path, mode="r|*") as archive:
+            yield archive, None
+
+
+def preview_archive(archive_path, archive_url, count):
+    with open_archive(archive_path, archive_url) as (archive, _):
+        shown = 0
+        for member in archive:
+            # repr keeps control characters in untrusted names out of the terminal.
+            print(f"{shown + 1}: {member.name!r}")
+            shown += 1
+            if shown == count:
+                break
+    print(f"Previewed {shown} archive members; no files extracted.")
 
 
 def requested_members(assets, strip_prefix="", member_prefix=""):
@@ -79,10 +156,8 @@ def copy_member(archive, member, destination):
 def extract_selected(
     archive_path, assets, image_directory,
     strip_prefix="", member_prefix="", dry_run=False, progress_every=100,
+    archive_url=None,
 ):
-    archive_path = Path(archive_path)
-    if not archive_path.is_file() or not tarfile.is_tarfile(archive_path):
-        raise ValueError(f"Not a readable tar archive: {archive_path}")
     requested = requested_members(assets, strip_prefix, member_prefix)
     found = set()
     matched = set()
@@ -93,9 +168,8 @@ def extract_selected(
     duplicate_member_count = 0
     scanned_count = 0
 
-    print(f"Archive: {archive_path.resolve()}")
     print(f"Selected images: {len(requested)}; staging root: {Path(image_directory).resolve()}")
-    with tarfile.open(archive_path, mode="r|*") as archive:
+    with open_archive(archive_path, archive_url) as (archive, content_length):
         for member in archive:
             scanned_count += 1
             if scanned_count % 10_000 == 0:
@@ -139,6 +213,10 @@ def extract_selected(
                     f"extracted {extracted_count:,}; kept {existing_count:,} existing",
                     flush=True,
                 )
+            if archive_url is not None and len(found) == len(requested):
+                print("All selected images found; closing the remote stream.", flush=True)
+                print("Duplicate-member checks cover only the scanned portion of the archive.")
+                break
 
     missing = sorted(set(requested) - found)
     summary = {
@@ -149,6 +227,8 @@ def extract_selected(
         "duplicate_selected_members": duplicate_member_count,
         "errors": len(errors), "dry_run": dry_run,
     }
+    if archive_url is not None and content_length is not None:
+        summary["remote_content_length"] = content_length
     print("Extraction summary:")
     for key, value in summary.items():
         print(f"  {key}: {value}")
@@ -167,9 +247,17 @@ def extract_selected(
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--archive", required=True, type=Path,
+    archive_options = parser.add_mutually_exclusive_group(required=True)
+    archive_options.add_argument(
+        "--archive", type=Path,
         help="Exact local tar archive path supplied by the user",
+    )
+    archive_options.add_argument(
+        "--archive-url", help="HTTP or HTTPS URL to stream without saving the full archive",
+    )
+    parser.add_argument(
+        "--list-first", type=int, metavar="N",
+        help="Preview the first N member names without extracting; takes precedence over dry-run",
     )
     default_manifest = PROJECT_ROOT / "data/manifests/pilot_image_assets.parquet"
     parser.add_argument("--manifest", type=Path, default=default_manifest)
@@ -193,6 +281,14 @@ def main(argv=None):
     arguments = parser.parse_args(argv)
     if arguments.progress_every <= 0:
         parser.error("--progress-every must be positive")
+    if arguments.list_first is not None and arguments.list_first <= 0:
+        parser.error("--list-first must be positive")
+    if arguments.list_first is not None:
+        try:
+            preview_archive(arguments.archive, arguments.archive_url, arguments.list_first)
+        except (OSError, ValueError, tarfile.TarError, EOFError) as error:
+            parser.exit(2, f"Archive preview failed: {error}\n")
+        return 0
     image_directory = arguments.output
     if image_directory is None:
         image_directory = default_image_directory()
@@ -202,6 +298,7 @@ def main(argv=None):
             arguments.archive, assets, image_directory,
             arguments.strip_prefix, arguments.member_prefix,
             arguments.dry_run, arguments.progress_every,
+            archive_url=arguments.archive_url,
         )
     except (OSError, ValueError, tarfile.TarError, EOFError) as error:
         parser.exit(2, f"Extraction failed: {error}\n")
