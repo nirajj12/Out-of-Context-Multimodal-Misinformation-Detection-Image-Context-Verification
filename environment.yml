@@ -1,0 +1,17 @@
+name: major-project
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - pyarrow
+  - pyyaml
+  - jupyter
+  - ipykernel
+  - matplotlib
+  - scikit-learn
+  - pillow
+  - tqdm
+  - pytest

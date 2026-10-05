@@ -1,0 +1,3 @@
+phase: dataset_preparation
+# TODO: Configure NewsCLIPpings metadata and verified train/validation/test splits.
+# TODO: Configure VisualNews-derived metadata after inspecting its schema and ID mappings.

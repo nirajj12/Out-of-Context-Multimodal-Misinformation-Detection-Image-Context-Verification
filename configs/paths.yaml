@@ -1,0 +1,12 @@
+project_root: .
+data_root: data
+raw_data_root: data/raw
+processed_data_root: data/processed
+manifest_root: data/manifests
+report_root: data/reports
+annotation_root: data/annotations
+pilot_root: data/pilot
+embedding_root: embeddings
+index_root: indexes
+model_root: models
+output_root: outputs

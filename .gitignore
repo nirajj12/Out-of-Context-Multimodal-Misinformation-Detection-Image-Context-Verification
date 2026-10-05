@@ -1,0 +1,79 @@
+# Python, packaging, and test caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+.dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Local Python / Conda environments
+.venv/
+venv/
+env/
+.conda/
+conda-meta/
+
+# Jupyter, editors, and macOS
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+._*
+
+# Local environment values; retain the public template
+.env
+.env.*
+!.env.example
+
+# Logs, caches, and temporary files
+*.log
+.cache/
+cache/
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Raw data: allow directory traversal so nested .gitkeep files can be tracked
+data/raw/*
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+
+# Generated data and staged large assets
+data/processed/*
+!data/processed/.gitkeep
+data/pilot/images/*
+!data/pilot/images/.gitkeep
+data/pilot/articles/*
+!data/pilot/articles/.gitkeep
+
+# Embeddings, indexes, checkpoints, and generated logs
+embeddings/*
+!embeddings/.gitkeep
+indexes/*
+!indexes/.gitkeep
+models/*
+!models/.gitkeep
+outputs/logs/*
+!outputs/logs/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Keep configs, code, notebooks, manifests, reports, and annotations trackable.

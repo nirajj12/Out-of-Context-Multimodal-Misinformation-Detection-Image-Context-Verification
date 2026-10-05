@@ -1,0 +1,13 @@
+# Preferred environment setup: use environment.yml with Conda.
+# requirements.txt is provided for lightweight pip compatibility.
+numpy
+pandas
+pyarrow
+PyYAML
+jupyter
+ipykernel
+matplotlib
+scikit-learn
+Pillow
+tqdm
+pytest
