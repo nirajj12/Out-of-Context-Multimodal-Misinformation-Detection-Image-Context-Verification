@@ -1,0 +1,31 @@
+annotation_id,query_row,event_label,confidence_score,first_pass_label,deep_review_label,agreement,short_reason
+A0006,199,RELATED_DIFFERENT_EVENT,94,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"McIlroy context, 2013 Masters versus 2014 Open"
+A0014,118,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,different actor and film; red-carpet resemblance only
+A0015,118,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,"BAFTA attendees, no link to Alfredson screening"
+A0016,118,RELATED_DIFFERENT_EVENT,94,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"Venice festival, 2012 award versus 2011 premiere"
+A0017,118,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,"different film premiere, Cannes versus Venice"
+A0021,162,RELATED_DIFFERENT_EVENT,92,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"shipwreck exploration, Greece versus Lake Michigan"
+A0031,85,RELATED_DIFFERENT_EVENT,92,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"Rio swimming, different race and athlete"
+A0032,85,RELATED_DIFFERENT_EVENT,97,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same swimmer, butterfly semifinal versus freestyle relay"
+A0041,168,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"Haiti hurricane, unrelated to drone launch"
+A0077,92,RELATED_DIFFERENT_EVENT,97,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same person, Iowa campaign versus presidential debate"
+A0078,92,RELATED_DIFFERENT_EVENT,95,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same person, Hannity town hall versus presidential debate"
+A0080,92,RELATED_DIFFERENT_EVENT,93,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same person, campaign rally versus presidential debate"
+A0086,195,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,"Labour conference, different party and occurrence"
+A0096,15,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"Everest, different landmark"
+A0101,15,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"miners, Australia topic only"
+A0111,115,RELATED_DIFFERENT_EVENT,98,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same player, Ljubicic Wimbledon versus Mahut Rotterdam"
+A0167,86,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,"Tottenham-Sheriff, unrelated teams and fixture"
+A0192,58,IRRELEVANT,97,IRRELEVANT,IRRELEVANT,True,"Oktoberfest sausages, unrelated restaurant context"
+A0204,182,RELATED_DIFFERENT_EVENT,92,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,different press setting; precise occasion unverified
+A0208,145,RELATED_DIFFERENT_EVENT,96,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same politician, Canberra remarks versus Perth conference"
+A0216,1,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,"ship interior, decorative resemblance only"
+A0220,1,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"cannabis jars, unrelated objects and context"
+A0233,36,IRRELEVANT,97,IRRELEVANT,IRRELEVANT,True,"Gaza funeral, different conflict and occurrence"
+A0236,106,RELATED_DIFFERENT_EVENT,98,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same actress, London 2016 versus Golden Globes 2014"
+A0252,47,RELATED_DIFFERENT_EVENT,98,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,117th Boston medal versus 119th Boston participants
+A0253,47,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"political candidacy announcement, unrelated occurrence"
+A0262,144,RELATED_DIFFERENT_EVENT,95,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"same Ravens team, Chiefs regular season versus Broncos playoff"
+A0276,196,IRRELEVANT,98,IRRELEVANT,IRRELEVANT,True,different athlete and discipline; athletics topic only
+A0284,184,IRRELEVANT,99,IRRELEVANT,IRRELEVANT,True,"newspaper executive, unrelated person and occurrence"
+A0312,153,RELATED_DIFFERENT_EVENT,94,RELATED_DIFFERENT_EVENT,RELATED_DIFFERENT_EVENT,True,"police-violence protests, Ferguson versus Baltimore"

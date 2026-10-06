@@ -1,0 +1,85 @@
+{
+  "faiss_version": "1.15.1",
+  "index_type": "IndexFlatIP",
+  "device": "CPU",
+  "metric_type": "inner_product",
+  "normalized_vectors": true,
+  "normalization_atol": 1e-05,
+  "evidence_corpus_size": 5000,
+  "query_count": 200,
+  "embedding_dimension": 512,
+  "raw_k": 50,
+  "filtered_k": 50,
+  "search_pool_sizes": {
+    "image_to_image": 52,
+    "image_to_text": 50,
+    "text_to_text": 51
+  },
+  "evaluation_ks": [
+    1,
+    5,
+    10
+  ],
+  "mrr_cutoff": 50,
+  "provenance_target": "image_id",
+  "filtering_rules": {
+    "image_to_image": "exclude exact query path OR same image_id OR known byte-identical query counterpart",
+    "image_to_text": "no exclusion; retain image-linked provenance and exact caption matches",
+    "text_to_text": "exclude evidence caption exactly equal to submitted caption; no text normalization"
+  },
+  "flag_definitions": {
+    "is_exact_query_image_path": "candidate image path exactly equals this query image path",
+    "is_caption_provenance": "candidate ID matches this query caption-side id",
+    "is_query_provenance": "candidate ID matches this query's image_id or caption-side id",
+    "is_any_pilot_query_provenance": "original corpus flag for provenance of any pilot query",
+    "is_same_image_id": "candidate ID matches image-side image_id; raw metric target",
+    "is_known_exact_duplicate": "candidate is the known byte-identical counterpart of this query image",
+    "known_duplicate_group": "both known pair members share a group; never independent visual evidence",
+    "is_exact_caption_match": "verbatim evidence-caption equality with submitted query caption"
+  },
+  "embedding_directory": "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot",
+  "retrieval_output_directory": "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval",
+  "input_embedding_file_names": [
+    "evidence_image_embeddings.npy",
+    "query_image_embeddings.npy",
+    "evidence_text_embeddings.npy",
+    "query_text_embeddings.npy",
+    "evidence_embedding_map.parquet",
+    "query_embedding_map.parquet",
+    "clip_embedding_config.json"
+  ],
+  "seed": 42,
+  "timestamp_utc": "2026-10-05T23:06:50.793802+00:00",
+  "embedding_model": {
+    "model_name": "ViT-B-32",
+    "pretrained": "openai",
+    "activation": "QuickGELU",
+    "force_quick_gelu": true
+  },
+  "manifest_sha256": {
+    "queries": "837b59d79d1817d5260e9eceddec581ed1356d53dddbb21452852a666def2934",
+    "evidence": "1bba9b65061dced0d5a3b83def554796ec39f835902e683196d8995e42b7da3e"
+  },
+  "input_array_content_sha256": {
+    "evidence_image_embeddings.npy": "6a2766842f99314b721f20faffa2e5dd2b1c8675e54e74b2267e40794ddcf188",
+    "query_image_embeddings.npy": "8fc7ce61c8327bd448de3b633a639272826b222a463fc92a8b81bfeac649887c",
+    "evidence_text_embeddings.npy": "85896168a0f2e93684bba9d821f21a2a0034b37ae906fb0465c5d4c464eb714f",
+    "query_text_embeddings.npy": "a4fc39ca1f24e149a598131baa2f98aa0d23efdd34a852c96a58ce9d078b1a54"
+  },
+  "known_duplicate_paths": [
+    "visual_news/origin/usa_today/images/0316/125.jpg",
+    "visual_news/origin/usa_today/images/0627/512.jpg"
+  ],
+  "known_duplicate_records_retained": true,
+  "diagnostic_query_rows": [
+    10,
+    46,
+    102,
+    144,
+    166,
+    185
+  ],
+  "diagnostic_fields": "falsified and source_dataset used only after search; no score fusion",
+  "source_dataset_semantics": "mismatch construction strategy, not truthfulness",
+  "tie_handling": "FAISS candidate order preserved; no claim of a unique ordering for equal scores"
+}

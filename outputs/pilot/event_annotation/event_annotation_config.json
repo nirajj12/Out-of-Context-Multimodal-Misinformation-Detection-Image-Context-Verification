@@ -1,0 +1,139 @@
+{
+  "seed": 42,
+  "selected_query_count": 40,
+  "pristine_query_count": 20,
+  "falsified_query_count": 20,
+  "source_dataset_distribution": [
+    {
+      "falsified": false,
+      "source_dataset": 0,
+      "query_count": 5
+    },
+    {
+      "falsified": false,
+      "source_dataset": 1,
+      "query_count": 5
+    },
+    {
+      "falsified": false,
+      "source_dataset": 2,
+      "query_count": 5
+    },
+    {
+      "falsified": false,
+      "source_dataset": 3,
+      "query_count": 5
+    },
+    {
+      "falsified": true,
+      "source_dataset": 0,
+      "query_count": 5
+    },
+    {
+      "falsified": true,
+      "source_dataset": 1,
+      "query_count": 5
+    },
+    {
+      "falsified": true,
+      "source_dataset": 2,
+      "query_count": 5
+    },
+    {
+      "falsified": true,
+      "source_dataset": 3,
+      "query_count": 5
+    }
+  ],
+  "selected_query_rows": [
+    199,
+    118,
+    162,
+    85,
+    168,
+    80,
+    67,
+    134,
+    92,
+    195,
+    15,
+    147,
+    115,
+    104,
+    26,
+    44,
+    54,
+    86,
+    24,
+    42,
+    58,
+    182,
+    145,
+    1,
+    36,
+    106,
+    47,
+    144,
+    150,
+    196,
+    184,
+    17,
+    121,
+    153,
+    61,
+    141,
+    160,
+    10,
+    98,
+    59
+  ],
+  "image_image_depth": 5,
+  "image_text_depth": 5,
+  "candidate_merge_rule": "union by (query_id, evidence_id); preserve both channel ranks/scores",
+  "unique_annotation_rows": 371,
+  "annotation_rows": 371,
+  "mean_candidates_per_query": 9.275,
+  "min_candidates_per_query": 8,
+  "max_candidates_per_query": 11,
+  "retrieved_unique_rows": 366,
+  "mean_retrieved_candidates": 9.15,
+  "provenance_anchor_count": 40,
+  "anchors_added": 5,
+  "known_duplicate_handling": "flag either pair member; retain rows; group visual duplicates in non-trivial evaluation",
+  "is_known_exact_duplicate_definition": "candidate is a member of the known byte-identical pair",
+  "is_query_linked_duplicate_definition": "candidate is the known counterpart of this query image",
+  "allowed_event_labels": [
+    "SAME_EVENT",
+    "RELATED_DIFFERENT_EVENT",
+    "IRRELEVANT"
+  ],
+  "allowed_confidence_values": [
+    "HIGH",
+    "MEDIUM",
+    "LOW"
+  ],
+  "allowed_review_statuses": [
+    "UNLABELED",
+    "LABELED",
+    "REVIEW"
+  ],
+  "project_root": "/Users/nirajmac/Documents/MajorProject",
+  "local_image_root": "/Users/nirajmac/Documents/MajorProject/data/pilot/images/pilot_images",
+  "retrieval_directory": "/Users/nirajmac/Documents/MajorProject/outputs/pilot/faiss_retrieval",
+  "retrieval_files_loaded": 4,
+  "required_unique_image_paths": 356,
+  "input_sha256": {
+    "data/manifests/pilot_evidence.parquet": "1bba9b65061dced0d5a3b83def554796ec39f835902e683196d8995e42b7da3e",
+    "data/manifests/pilot_image_assets.parquet": "da8de7585b7ab62481cdf2854a53df2fcdc4324725f2b11a3ecd86f2b212c746",
+    "data/manifests/pilot_queries.parquet": "837b59d79d1817d5260e9eceddec581ed1356d53dddbb21452852a666def2934",
+    "outputs/pilot/faiss_retrieval/image_to_image_filtered.parquet": "47f7641536f72f0aae645df9e85410b5b7557c6112291516d1455de6cdc3613a",
+    "outputs/pilot/faiss_retrieval/image_to_text_filtered.parquet": "ca92924127f8e7fde2bd50c3c42c0edc04c465c52511809a5fc5cb54a4803b4a",
+    "outputs/pilot/faiss_retrieval/retrieval_config.json": "43750a558c2713334175e0df27b6c23fc04f674ac2ef8117ab5fcaeae7bc6d84",
+    "outputs/pilot/faiss_retrieval/retrieval_metrics.json": "367be99b78ae3ad66c52b3e382c3b1eb40806e7533d33cfed53fa795da66b607"
+  },
+  "creation_timestamp_utc": "2026-10-05T23:37:35.191010+00:00",
+  "event_labels_automatically_generated": false,
+  "timestamp_semantics": "article-associated metadata; not asserted event/capture date",
+  "primary_evaluation": "retrieved Top-5, excluding exact self/query-linked duplicate; one known visual group per query/channel",
+  "inclusive_evaluation": "report separately; includes trivial retrieved provenance, never anchor-only rows"
+}

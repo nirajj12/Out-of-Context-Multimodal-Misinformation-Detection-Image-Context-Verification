@@ -1,0 +1,2637 @@
+{
+  "seed": 42,
+  "sample_method": "random.Random(42); 15 per first-pass HIGH label, template order",
+  "audit_ids": [
+    "A0236",
+    "A0031",
+    "A0006",
+    "A0262",
+    "A0080",
+    "A0078",
+    "A0077",
+    "A0032",
+    "A0312",
+    "A0021",
+    "A0252",
+    "A0204",
+    "A0016",
+    "A0208",
+    "A0111",
+    "A0017",
+    "A0015",
+    "A0041",
+    "A0096",
+    "A0101",
+    "A0192",
+    "A0233",
+    "A0014",
+    "A0220",
+    "A0086",
+    "A0284",
+    "A0253",
+    "A0276",
+    "A0216",
+    "A0167"
+  ],
+  "first_pass": {
+    "A0001": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "2014 Open, second versus final round; review granularity",
+      "web_checked": "True",
+      "web_evidence_note": "The Open confirms Garcia final-day charge at 2014 Royal Liverpool; query is second round. https://www.theopen.com/previous-opens/143rd-open-royal-liverpool-2014"
+    },
+    "A0002": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different golfers and tournaments; golf topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0003": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different golfers at practice; golf topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0004": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Open Championship, different year",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0005": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different golfer and championship; golf topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0006": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "McIlroy context, 2013 Masters versus 2014 Open",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0007": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same golfer, 2013 versus 2014 Open",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0008": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same golfer, Ryder Cup versus Open",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0009": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial identity, not independent corroboration",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0010": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same golfer, Masters practice versus Open",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0011": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Golden Globes cast, unrelated to Alfredson premiere",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0012": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "royal dinner, unrelated to film premiere",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0013": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "SNL anniversary, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0014": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actor and film; red-carpet resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0015": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "BAFTA attendees, no link to Alfredson screening",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0016": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Venice festival, 2012 award versus 2011 premiere",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0017": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different film premiere, Cannes versus Venice",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0018": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different film photocall, Cannes versus Venice",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0019": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial identity, not independent corroboration",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0020": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Hollywood award, unrelated to Alfredson premiere",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0021": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "shipwreck exploration, Greece versus Lake Michigan",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0022": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "rocket recovery, underwater setting only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0023": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Antarctic expedition, unrelated to shipwreck dive",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0024": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Roman mine, unrelated excavation site",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0025": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "cathedral repair, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0026": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; June 2013 dive, later article date",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0027": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "ancient tsunami diagram, unrelated to dive",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0028": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "meteor recovery, unrelated object and incident",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0029": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "migrant remains, wetsuit resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0030": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Viking site excavation, no event-level connection",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0031": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio swimming, different race and athlete",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0032": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same swimmer, butterfly semifinal versus freestyle relay",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0033": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different swimmer, generic pool portrait",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0034": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio swimming, backstroke versus freestyle relay",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0035": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "high jump, unrelated sporting occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0036": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial relay identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0037": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same swimmer, butterfly medal versus relay; date metadata conflicts",
+      "web_checked": "True",
+      "web_evidence_note": "World Aquatics lists distinct 200 butterfly and 4x200 golds on 9 August 2016; image says Rio 2016 despite 2014 article timestamp. https://www.worldaquatics.com/athletes/1001621/-/medals"
+    },
+    "A0038": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "synchronized swimming art, different activity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0039": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "relay teammate Lochte, 2014 nationals versus Rio relay",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0040": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Nepal earthquake, unrelated to Rwanda drone launch",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0041": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Haiti hurricane, unrelated to drone launch",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0042": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Indonesia salt work, landscape resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0043": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Gujarat daily life, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0044": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tanzania rhinos, unrelated to Rwanda drone launch",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0045": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial identity, not independent corroboration",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0046": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Malawi fish drying, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0047": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Haitian migration, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0048": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Maasai trademark workshop, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0049": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different boxers and bout; boxing topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0050": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different boxers and title bout",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0051": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different boxers, professional debut",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0052": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Mayweather-Pacquiao, unrelated bout",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0053": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Romney-Holyfield exhibition, unrelated bout",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0054": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Khan-Maidana identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0055": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "football match, unrelated to boxing bout",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0056": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Blackwell-Eubank, different boxers and bout",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0057": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Bosnian prayers, unrelated to Iraqi comedy set",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0058": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Gaza funeral, unrelated to Iraqi comedy set",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0059": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Kabul wedding, unrelated to Iraqi comedy set",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0060": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Bosnian coffee gathering, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0061": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Iraqi Easter service, unrelated to comedy filming",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0062": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial filming-set identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0063": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Abu Qatada release, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0064": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different production; Islam theme only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0065": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "French prison, extremism topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0066": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Bahrain building, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0067": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "LOW",
+      "annotation_note": "same person; query capture event unclear after web check",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0068": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "LOW",
+      "annotation_note": "same person; portrait context does not establish capture event",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0069": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, visibly different speech setting; query event unknown",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0070": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, UK visit versus unidentified seated speech",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0071": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, airport greeting versus unidentified speech",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0072": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial identity, capture event unnamed",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0073": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Deng portrait, historical political comparison only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0074": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, Putin meeting versus unidentified speech",
+      "web_checked": "True",
+      "web_evidence_note": "Capture occurrence unspecified. https://www.theguardian.com/world/2016/jan/13/china-human-rights-crackdown-arrest-peter-dahlin-swedish-activist"
+    },
+    "A0075": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, 2015 debate versus October 2016 debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0076": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Today interview versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0077": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Iowa campaign versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0078": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Hannity town hall versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0079": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Utah rally versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0080": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, campaign rally versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0081": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, podium rally versus presidential debate",
+      "web_checked": "True",
+      "web_evidence_note": "Oct. 9 debate. https://www.washingtonpost.com/video/politics/donald-trump-on-americas-inner-cities/2016/10/10/a47180ec-8f0a-11e6-bc00-1a9756d4111b_video.html"
+    },
+    "A0082": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial debate identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0083": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different politicians; British politics topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0084": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "EU summit, unrelated to NHS conference vote",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0085": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cameron-Johnson, unrelated to NHS conference vote",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0086": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Labour conference, different party and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0087": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Scottish union campaign, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0088": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Gateshead vote identity",
+      "web_checked": "True",
+      "web_evidence_note": "Gateshead NHS vote context. https://www.theguardian.com/politics/2012/mar/11/nick-clegg-shirley-williams-nhs-health-bill"
+    },
+    "A0089": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, election campaign versus NHS vote",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0090": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, Scottish conference versus Gateshead vote",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0091": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same politician, interview portrait; capture event unspecified",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0092": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, charity appearance versus NHS vote",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0093": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "African astronomical scene, unrelated to Uluru",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0094": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Greenland glacier, landscape resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0095": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Scottish island, unrelated landscape",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0096": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Everest, different landmark",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0097": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pentland coast, unrelated landscape",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0098": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial landscape identity, occurrence unspecified",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0099": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Newman fairy circles, Australian landscape topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0100": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "community daily life, no Uluru occurrence context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0101": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "miners, Australia topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0102": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "historical painting, unrelated to Uluru photograph",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0103": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Beijing basketball medals, unrelated Olympic occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0104": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio gymnastics, artistic team versus rhythmic group final",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0105": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio medals, diving proposal versus rhythmic podium",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0106": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Russian Rio competitors, water polo versus rhythmic final",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0107": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio opening ceremony versus rhythmic medal ceremony",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0108": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial rhythmic-podium identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0109": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "Russian Rio eligibility decision versus podium; photo occurrence unclear",
+      "web_checked": "True",
+      "web_evidence_note": "July 24 eligibility announcement; photo capture unspecified. https://www.washingtonpost.com/news/sports/wp/2016/07/24/ioc-decides-against-complete-ban-of-russian-team-from-rio-olympics/"
+    },
+    "A0110": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Russian Olympic kit, Sochi presentation versus Rio podium",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0111": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same player, Ljubicic Wimbledon versus Mahut Rotterdam",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0112": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different player and old Davis Cup tie; tennis topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0113": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different players and Australian Open match",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0114": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Djokovic-Federer, no link to Murray-Mahut match",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0115": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sock-Daniel at Rio, no event-level link",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0116": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Murray-Mahut identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0117": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same player, Australian final versus Rotterdam match",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0118": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Olympic sailing, unrelated to tennis match",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0119": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different player and Davis Cup eligibility; tennis topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0120": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Gayle IPL batting, unrelated to Tendulkar Yorkshire signing",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0121": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ashes match, unrelated player and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0122": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Swann Ashes batting, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0123": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "England training, unrelated to Yorkshire signing",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0124": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Manchester United trophy, unrelated sport and event",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0125": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; archival Yorkshire signing, later article",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0126": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "football supporter trip, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0127": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "historical school photograph, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0128": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Crowe induction, different cricketer and ceremony",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0129": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "house photograph, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0130": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Arizona firefighter memorial, unrelated to Chavez rally",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0131": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Chattanooga memorial, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0132": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Chavez support, Caracas rally after his death versus Acarigua campaign",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0133": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Oakland Ferguson protest, different cause and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0134": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "NASCAR fan, car and flag resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0135": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Acarigua rally identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0136": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Mexican funeral, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0137": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "Chavez supporters, different scene; candidate capture date unverified",
+      "web_checked": "True",
+      "web_evidence_note": "Recovery report found; photo occurrence remains unspecified. https://www.standard.co.uk/panewsfeeds/hugo-chavez-joking-and-laughing-8461036.html"
+    },
+    "A0138": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ferguson vigil, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0139": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Alton Sterling portrait, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0140": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Newcastle-Sunderland, different clubs and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0141": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "England-Estonia, unrelated fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0142": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Brentford-Charlton, different clubs and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0143": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Everton-West Brom, different clubs and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0144": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Wednesday-Ipswich, different clubs and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0145": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Swansea-Burnley identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0146": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Swansea team, cup celebration versus Burnley match",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0147": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Newcastle transfer context, unrelated fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0148": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Newcastle player, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0149": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Manchester City substitute, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0150": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pakistan flood evacuation versus Medak community scene",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0151": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Jammu heat, water-container resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0152": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pakistan displacement, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0153": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Syria-Turkey refugees, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0154": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Boko Haram rescue, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0155": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Medak community identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0156": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different region and activist, development theme only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0157": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Iraqi checkpoint, water theme only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0158": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sudanese conflict displacement, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0159": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different goalkeeper and match; similar expression only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0160": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Liverpool-Cardiff, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0161": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Bayern manager, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0162": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Arsenal player, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0163": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Brazil player, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0164": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Leicester player, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0165": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Everton-Burnley identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0166": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Belgian political gathering, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0167": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tottenham-Sheriff, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0168": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Italian football official, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0169": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ferguson parody, different subject; football satire only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0170": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ferguson at Chelsea match, unrelated to Pardew montage",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0171": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different subjects; photomontage format only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0172": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "US college coaches, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0173": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Obama speech, unrelated subject; partially damaged image",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0174": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "Newcastle management, Kinnear context versus Pardew satire",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0175": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Northern Ireland politician, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0176": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Australian leaders debate, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0177": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different club and manager; dismissal theme only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0178": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial satire identity, no literal guillotine event",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0179": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "crime-related portrait, unrelated to museum visitor",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0180": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "music prize press conference, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0181": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Lake Turkana fisher, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0182": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "murder inquiry writing, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0183": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sri Lankan hospital resident, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0184": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Coachella attendee, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0185": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Venezuelan rally, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0186": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Venezuelan voter, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0187": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "film still, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0188": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different museum and visitors; museum theme only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0189": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial African American Museum visit identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0190": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different restaurant and dish; offal topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0191": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Masseria chef, unrelated to Animal dish",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0192": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Oktoberfest sausages, unrelated restaurant context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0193": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pineapple and Pearls dining, unrelated restaurant",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0194": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Buffalo toast, unrelated restaurant and dish",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0195": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Purnell portrait, different chef and restaurant",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0196": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial dish identity, capture occasion unnamed",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0197": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Chartreuse interior, unrelated restaurant",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0198": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Thip Khao chef, unrelated restaurant and dish",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0199": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, different setting; candidate capture occasion unspecified",
+      "web_checked": "True",
+      "web_evidence_note": "Query: Ninestiles speech, 20 July 2015. https://www.gov.uk/government/speeches/extremism-pm-speech ; candidate generic caption: https://www.theguardian.com/politics/2015/feb/06/downing-street-denies-david-cameron-diplomatic-irrelevance-ukraine-talks"
+    },
+    "A0200": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, 2016 Downing Street departure versus Birmingham speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0201": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Downing Street scene versus school speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0202": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Palace departure versus school speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0203": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same person, different speech setting; archive occasion unspecified",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0204": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, outdoor press remarks versus school speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0205": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Australian speech versus Birmingham speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0206": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same person, Hollande summit versus school speech",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0207": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; July speech reused in October article",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0208": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, Canberra remarks versus Perth conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0209": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, Rudd debate versus Perth conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0210": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, Darwin media appearance versus Perth conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0211": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different leader and speech; politics topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0212": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cameron-Merkel EU summit, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0213": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Perth conference identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0214": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tony Blair, unrelated person and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0215": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Merkel Lowy lecture, unrelated to Perth conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0216": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "ship interior, decorative resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0217": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "mail slot, object resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0218": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "California tree, unrelated tourist attraction",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0219": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "vinyl pressing, circular-label resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0220": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "cannabis jars, unrelated objects and context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0221": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial museum-display identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0222": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "film still hiking, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0223": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "analytics graph, unrelated context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0224": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Flint email, unrelated context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0225": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "hospital equipment collage, unrelated objects",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0226": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Afghan civilian casualty, different conflict and incident",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0227": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Jerusalem arrest, different conflict and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0228": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Iraq bodies, different people and conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0229": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Turkish protest arrest, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0230": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Venezuelan protest, unrelated conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0231": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Sirte casualty identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0232": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Quetta bombing, different incident and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0233": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Gaza funeral, different conflict and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0234": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Kabul car bombing, different incident and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0235": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Gaza shell, different conflict and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0236": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same actress, London 2016 versus Golden Globes 2014",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0237": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actress and Oscars ceremony; awards topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0238": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actress and Cannes premiere",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0239": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same 2014 Golden Globes ceremony, different award recipient",
+      "web_checked": "True",
+      "web_evidence_note": "Official gallery identifies both at 12 January 2014 ceremony. https://goldenglobes.com/photo-gallery/telecast-winners-71st-annual-golden-globes/"
+    },
+    "A0240": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actress and Academy luncheon",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0241": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Golden Globes identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0242": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actress and AACTA ceremony",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0243": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different actress and appearance; shared film franchise only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0244": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same actress and awarded film; fictional scene versus awards ceremony",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0245": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "marathon events, London versus Boston; review relatedness threshold",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0246": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "fictional running scene, unrelated to Boston Marathon",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0247": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Commonwealth village role, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0248": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "abortion protest, crowd resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0249": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "golf round, unrelated sporting occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0250": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Boston participants identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0251": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Boston Marathon, 2014 participant profile versus 2015 arrival",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0252": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "117th Boston medal versus 119th Boston participants",
+      "web_checked": "True",
+      "web_evidence_note": "BAA lists 2015 as 119th; candidate medal visibly says 117th. https://www.baa.org/wp-content/uploads/docs/2025-04/BM25%20Media%20Guide%20Pages_Updates-single%20pages.pdf"
+    },
+    "A0253": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "political candidacy announcement, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0254": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "historical portraits, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0255": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Bears-Vikings, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0256": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Seahawks warm-up, no Ravens-Broncos event context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0257": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Ravens team, Packers regular season versus Broncos playoff",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0258": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Broncos team, Seahawks Super Bowl versus Ravens playoff",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0259": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Seahawks-Falcons, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0260": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Ravens-Broncos identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0261": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Ravens team, Patriots playoff versus Broncos playoff",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0262": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Ravens team, Chiefs regular season versus Broncos playoff",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0263": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "LOW",
+      "annotation_note": "same team; Ray Rice portrait capture event unresolved",
+      "web_checked": "True",
+      "web_evidence_note": "Publisher page could not be fetched; no capture-date verification. https://www.washingtonpost.com/sports/redskins/as-the-ravens-return-to-nfl-action-many-fans-in-baltimore-show-support-for-ray-rice/2014/09/11/f73568d4-3a07-11e4-9c9f-ebb47272e40e_story.html/"
+    },
+    "A0264": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Ravens team, Super Bowl trophy versus divisional playoff",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0265": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "UN peacekeeping, different mission and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0266": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Burundi security, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0267": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Yemen militia, armored-vehicle resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0268": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sanaa checkpoint, unrelated country and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0269": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "US migrant processing, vehicle resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0270": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; 2012 Dili patrol reused in 2014 article",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0271": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Congo soldier, unrelated country and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0272": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Mayotte migrant portrait, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0273": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sierra Leone Ebola response, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0274": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio track medals, Bolt sprint versus Farah 10000m",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0275": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same athlete and distance, Zurich 2014 versus Rio 2016",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0276": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different athlete and discipline; athletics topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0277": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "wheelchair London Marathon, unrelated race and athlete",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0278": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rio track competition, hurdles versus 10000m",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0279": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Rio 10000m identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0280": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same athlete, Great North Run versus Rio 10000m",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0281": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "London Marathon field, unrelated athletes and race",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0282": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Volkswagen executive, unrelated to Robinson meeting",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0283": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same politician, British-Irish Council versus Villiers meeting",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0284": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "newspaper executive, unrelated person and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0285": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tony Blair, unrelated person and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0286": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Australian leaders, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0287": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Icelandic leader, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0288": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Blair with troops, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0289": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "oil platform, unrelated context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0290": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Hillsborough meeting identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0291": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Virginia lawmakers, different people and hearing",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0292": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "airport authority hearing, different people and institution",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0293": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Senate gun hearing, different people and purpose",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0294": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "State of the Union, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0295": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Florida trial, different people and proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0296": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; 2007 hearing reused in 2015 article",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0297": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Supreme Court budget hearing, different people and proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0298": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Senate budget testimony, unrelated proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0299": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Virginia Senate debate, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0300": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Korean ferry boss, unrelated person and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0301": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "North Korean detainee, unrelated person and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0302": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Xi leadership announcement, unrelated to Mo Yan press conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0303": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Kim Jong-un speech, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0304": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Taiwan politician, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0305": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Gaomi Nobel press conference identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0306": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "dissident custody photo, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0307": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Wang at security dialogue, unrelated to Mo Yan conference",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0308": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Wenzhou cityscape, country-level topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0309": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ban-Hu meeting, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0310": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Boston bombing aftermath, unrelated to Baltimore patrol",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0311": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cleveland convention protest, different cause and city",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0312": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "police-violence protests, Ferguson versus Baltimore",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0313": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Black Lives Matter protest, Minneapolis versus Baltimore",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0314": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tampa convention policing, different cause and city",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0315": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "same Freddie Gray case, September courthouse protest versus April unrest",
+      "web_checked": "True",
+      "web_evidence_note": "Courthouse gathering: 2 September 2015; query caption specifies April patrol. https://www.washingtonpost.com/video/local/protests-in-baltimore-ahead-of-freddie-gray-hearing/2015/09/02/192fab60-5182-11e5-b225-90edbd49f362_video.html"
+    },
+    "A0316": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "police-violence protests, Michael Brown versus Freddie Gray",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0317": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pittsburgh G20 protest, different cause and city",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0318": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "Freddie Gray childhood location, no April patrol occurrence context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0319": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; April unrest patrol reused in August article",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0320": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Syrian frontline fire, unrelated to ferry strike",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0321": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pakistan political protest, burning tyres only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0322": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Burkina Faso political uprising, unrelated cause and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0323": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Daytona track fire, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0324": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Syrian protest, burning tyres only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0325": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Channel Tunnel blockade identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0326": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Ferguson protest, unrelated cause and country",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0327": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Thailand bus crash, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0328": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Reds celebration, different team and postseason occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0329": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Diamondbacks-Reds, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0330": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cleveland-Toronto, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0331": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cardinals-Dodgers, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0332": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Cardinals-Red Sox, unrelated teams and fixture",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0333": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Nationals division-clinch identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0334": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Angels signing, unrelated team and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0335": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "basketball celebration, unrelated sport and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0336": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Central African Republic mourning, unrelated conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0337": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Haiti earthquake survivor, unrelated incident",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0338": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Syrian refugees in Iraq, unrelated conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0339": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Burundian refugee camp, unrelated conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0340": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Syria-Turkey crossing, unrelated conflict",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0341": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial Boko Haram rescue identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0342": {
+      "event_label": "RELATED_DIFFERENT_EVENT",
+      "annotation_confidence": "MEDIUM",
+      "annotation_note": "same Boko Haram conflict, video statement versus rescue; recording unidentified",
+      "web_checked": "True",
+      "web_evidence_note": "Publisher identifies Boko Haram video but not recording date or occasion. https://www.theguardian.com/world/2015/aug/19/isis-al-qaida-myths-terrorism-war-mistakes-9-11"
+    },
+    "A0343": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "child-marriage infographic, no rescue occurrence context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0344": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "different performers and venue; concert topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0345": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Pizza Underground at Black Cat, different act and venue",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0346": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Kentucky Derby crowd, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0347": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Rome May Day concert, different performers and venue",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0348": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Lake Turkana fisher, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0349": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial FUR performance identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0350": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Tokyo bar location, unrelated venue and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0351": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Sotomayor portrait, dancing topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0352": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "DJ app screenshot, no concert occurrence context",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0353": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Harding family portrait, different family and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0354": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Moore family portrait, different people and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0355": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "school group, archival photo resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0356": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Welsh soldiers, archival photo resemblance only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0357": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Romanov family, different people and sitting; royalty topic only",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0358": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial archival portrait identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0359": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "missing children, different people and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0360": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Wilson siblings, different people and occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0361": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "military detainees, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0362": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "airport authority hearing, different people and purpose",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0363": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Virginia campaign stop, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0364": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Virginia polling station, unrelated occurrence",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0365": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Norwood trial reaction, unrelated proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0366": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Chinese party session, unrelated proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0367": {
+      "event_label": "SAME_EVENT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "exact query image; trivial August 2013 oyster hearing identity",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0368": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Florida Medicaid hearing, different proceeding and issue",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0369": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Arias trial, unrelated proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0370": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Simpson court hearing, unrelated proceeding",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    },
+    "A0371": {
+      "event_label": "IRRELEVANT",
+      "annotation_confidence": "HIGH",
+      "annotation_note": "Senate budget testimony, different proceeding and issue",
+      "web_checked": "False",
+      "web_evidence_note": ""
+    }
+  },
+  "first_pass_sha256": "4005ed6b91548d5a588b9efab9b2b359ef6ac1f760d43d16b2bb4a7723fd2a09",
+  "template_sha256": "8fa4bd2336148859ee8364556ea8bff0f0f70e79de4a2747a5a6ed50d24af427"
+}

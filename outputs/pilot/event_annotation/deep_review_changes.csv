@@ -1,0 +1,3 @@
+annotation_id,query_row,old_label,new_label,old_confidence,new_confidence,confidence_score,reason
+A0174,24,RELATED_DIFFERENT_EVENT,IRRELEVANT,MEDIUM,HIGH,91,Newcastle affiliation only; query is a satirical montage
+A0318,153,RELATED_DIFFERENT_EVENT,IRRELEVANT,MEDIUM,HIGH,90,childhood-home illustration supplies no patrol-occurrence context
