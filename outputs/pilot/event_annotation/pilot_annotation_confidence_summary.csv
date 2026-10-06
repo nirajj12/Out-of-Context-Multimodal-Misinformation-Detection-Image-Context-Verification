@@ -1,0 +1,11 @@
+summary_type,category,count,mean,median,min,max
+confidence_level,HIGH,357,,,,
+confidence_level,MEDIUM,11,,,,
+confidence_level,LOW,3,,,,
+review_status,LABELED,347,,,,
+review_status,REVIEW,24,,,,
+confidence_score,all,371,97.06469002695418,98.0,58.0,100.0
+score_bin,>=95,333,,,,
+score_bin,85–94,24,,,,
+score_bin,70–84,11,,,,
+score_bin,<70,3,,,,

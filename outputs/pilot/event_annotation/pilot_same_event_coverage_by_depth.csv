@@ -1,0 +1,13 @@
+channel,depth,query_count,queries_with_nontrivial_same,coverage_rate
+image_to_image,5,40,1,0.025
+image_to_image,10,40,1,0.025
+image_to_image,20,40,3,0.075
+image_to_image,50,40,3,0.075
+image_to_text,5,40,0,0.0
+image_to_text,10,40,0,0.0
+image_to_text,20,40,1,0.025
+image_to_text,50,40,3,0.075
+union,5,40,1,0.025
+union,10,40,1,0.025
+union,20,40,3,0.075
+union,50,40,3,0.075

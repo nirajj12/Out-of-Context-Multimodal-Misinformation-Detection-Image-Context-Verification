@@ -1,0 +1,223 @@
+{
+  "query_count": 40,
+  "evidence_count": 5000,
+  "channels": [
+    "image_to_image",
+    "image_to_text",
+    "union"
+  ],
+  "depths": [
+    5,
+    10,
+    20,
+    50
+  ],
+  "new_candidates_inspected": 3003,
+  "label_counts": {
+    "IRRELEVANT": 2896,
+    "RELATED_DIFFERENT_EVENT": 104,
+    "SAME_EVENT": 3
+  },
+  "web_checked_count": 4,
+  "review_count": 3,
+  "coverage_by_depth": [
+    {
+      "channel": "image_to_image",
+      "depth": 5,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 1,
+      "coverage_rate": 0.025
+    },
+    {
+      "channel": "image_to_image",
+      "depth": 10,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 1,
+      "coverage_rate": 0.025
+    },
+    {
+      "channel": "image_to_image",
+      "depth": 20,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 3,
+      "coverage_rate": 0.075
+    },
+    {
+      "channel": "image_to_image",
+      "depth": 50,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 3,
+      "coverage_rate": 0.075
+    },
+    {
+      "channel": "image_to_text",
+      "depth": 5,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 0,
+      "coverage_rate": 0.0
+    },
+    {
+      "channel": "image_to_text",
+      "depth": 10,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 0,
+      "coverage_rate": 0.0
+    },
+    {
+      "channel": "image_to_text",
+      "depth": 20,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 1,
+      "coverage_rate": 0.025
+    },
+    {
+      "channel": "image_to_text",
+      "depth": 50,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 3,
+      "coverage_rate": 0.075
+    },
+    {
+      "channel": "union",
+      "depth": 5,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 1,
+      "coverage_rate": 0.025
+    },
+    {
+      "channel": "union",
+      "depth": 10,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 1,
+      "coverage_rate": 0.025
+    },
+    {
+      "channel": "union",
+      "depth": 20,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 3,
+      "coverage_rate": 0.075
+    },
+    {
+      "channel": "union",
+      "depth": 50,
+      "query_count": 40,
+      "queries_with_nontrivial_same": 3,
+      "coverage_rate": 0.075
+    }
+  ],
+  "first_same_rank_summary": {
+    "image_to_image": {
+      "queries_with_same": 3,
+      "queries_without_same_at_50": 37,
+      "median_first_same_rank": 13.0,
+      "min_first_same_rank": 4,
+      "max_first_same_rank": 15,
+      "first_same_ranks": [
+        4,
+        13,
+        15
+      ]
+    },
+    "image_to_text": {
+      "queries_with_same": 3,
+      "queries_without_same_at_50": 37,
+      "median_first_same_rank": 48.0,
+      "min_first_same_rank": 18,
+      "max_first_same_rank": 50,
+      "first_same_ranks": [
+        18,
+        48,
+        50
+      ]
+    },
+    "union": {
+      "queries_with_same": 3,
+      "queries_without_same_at_50": 37,
+      "median_first_same_rank": 13.0,
+      "min_first_same_rank": 4,
+      "max_first_same_rank": 15,
+      "first_same_ranks": [
+        4,
+        13,
+        15
+      ]
+    }
+  },
+  "bottleneck_decision": "MIXED_BOTTLENECK",
+  "short_reason": "Union coverage rises from 1/40 at Top-5 to 3/40 at Top-20, then remains 3/40 at Top-50. Two additional queries reveal lower-ranked matches; 37/40 remain uncovered in both retrieved Top-50 lists. Ranking misses are observed, alongside a dominant retrieval-limited evidence coverage gap.",
+  "recommended_next_step": "Review these AI-assisted annotations and audit the frozen corpus for the 37 uncovered occurrences before training. Prioritize planning targeted VisualNews evidence expansion with distinct photos of those occurrences; if corpus auditing finds existing positives below rank 50, reconsider ranking first. Do not train from this tiny positive set.",
+  "limitations": [
+    "Top-50 misses do not prove SAME_EVENT evidence is absent from the full 5,000-item corpus.",
+    "AI-assisted labels have no completed human review; confidence scores are not calibrated probabilities.",
+    "Adaptive candidate selection and cross-channel reuse make label counts annotation-cost descriptors, not population event rates.",
+    "Same article or publication date alone is insufficient to establish event identity; occurrence captions and actual images were used.",
+    "Static/undated queries remain in the fixed 40-query denominator; event identity is intrinsically less well specified for them."
+  ],
+  "annotation_provenance": {
+    "source": "AI_ASSISTED_DEEPER_RANK_REVIEW",
+    "human_review_completed": false,
+    "confidence_calibrated": false,
+    "unique_pair_labels_reused_across_channels": true,
+    "adaptive_stages": [
+      10,
+      20,
+      50
+    ],
+    "review_exclusion_changes_positive_coverage": false
+  },
+  "validation": {
+    "passed": true,
+    "retrieval_positions": 4000,
+    "first_rank_prefixes_checked": 80,
+    "frozen_input_and_prior_output_sha256": {
+      "outputs/pilot/event_annotation/same_event_rate_by_rank.png": "70e397ee26218edb84626e6e9415dcc83e827d10c4874d35be1d006b82748234",
+      "outputs/pilot/event_annotation/pilot_event_rank_metrics.csv": "861cef8609d7a985627644a563bc743b888cd45a5d2f2a52793c4e4be5d9f46f",
+      "outputs/pilot/event_annotation/.DS_Store": "a663de7a4a504af0bca6e834510f04d44714781ac8670d4035ea97002c1f30a3",
+      "outputs/pilot/event_annotation/.deep_review_state.json": "cf0041abb2a2e09fe29db81cd0fd04d128e4ab3b9f98e38af125fdc625747dc7",
+      "outputs/pilot/event_annotation/pilot_event_similarity_summary.csv": "136b3f0802aa0b85bcb995116c635cb18e83df6c8c2755376515c8a57ef7b845",
+      "outputs/pilot/event_annotation/image_text_similarity_by_event.png": "fa50a92df5891842e45d897f80adc86593b2f8b75a8181b39c428f17280166ab",
+      "outputs/pilot/event_annotation/deep_review_changes.csv": "c2829f94382529381c7a6d3248107677ad40ed93ef2be276fab0060ea7b5cef1",
+      "outputs/pilot/event_annotation/pilot_event_annotations_ai_assisted.csv": "0fa16143f37f2023c77a37084b32dd45a5b153e554c047f9cdbefc2e3039a7dd",
+      "outputs/pilot/event_annotation/pilot_event_review_queue.csv": "b7c415464c7a0c36a12682e17888e94b15c207de67a1c31d8ef9e666f41091e4",
+      "outputs/pilot/event_annotation/image_image_similarity_by_event.png": "ca454313dff50157fe8a3d8af19a35ee31cb927a657f788dcf4bf1e1b77deab7",
+      "outputs/pilot/event_annotation/pilot_event_analysis_summary.json": "7d3a628cb57db41dc5f77f957f57ae988d9be17b654a2b4b197adad2b1310d63",
+      "outputs/pilot/event_annotation/pilot_event_annotation_template.parquet": "3123a3d6b77e02ecd241b0b17dd112093e04c857a84e172192f7b129318d2d88",
+      "outputs/pilot/event_annotation/pilot_annotation_confidence_summary.csv": "7bed2b84be5f8629ed7822c4ad488c3637ef9dfc9d798fedad5446e29b98e555",
+      "outputs/pilot/event_annotation/event_label_distribution.png": "2485c2fff77b38ce0f3180aec54751a94fb43998f63fc324570a1c857475368b",
+      "outputs/pilot/event_annotation/event_annotation_config.json": "88647b257afb2a9424a7e5de433d49d4654fc3c09dd1b2208a98e0cc167234a1",
+      "outputs/pilot/event_annotation/pilot_event_channel_metrics.csv": "aa096e1ae9f183e551d744f5d87c601f79e6b1141542612eaa4ffef3af201776",
+      "outputs/pilot/event_annotation/pilot_event_annotation_template.csv": "8fa4bd2336148859ee8364556ea8bff0f0f70e79de4a2747a5a6ed50d24af427",
+      "outputs/pilot/event_annotation/annotation_image_paths.txt": "0785e15523dfa54eae5bece2acfbf88c40f47ded8ff2aa830dd3d9b8095d5d51",
+      "outputs/pilot/event_annotation/pilot_event_sensitivity_analysis.csv": "242081137de040cf76342c80315807af4603369c8ea3813b3701ee7f6376ba12",
+      "outputs/pilot/event_annotation/high_confidence_audit.csv": "37350cd79032960e6248379cb96092b6f7bf325bbe8c870f6efd57dd82b4fa8f",
+      "outputs/pilot/faiss_retrieval/image_to_image_raw.parquet": "ca2436a749110d12e84d802dc87278eb459c4684cc41b888760478c5747ad91e",
+      "outputs/pilot/faiss_retrieval/text_to_text_filtered.parquet": "ad4062f0fe0324bb6e19b8b45980634a5a6cf15dedff84ba59c91e06a5b41c17",
+      "outputs/pilot/faiss_retrieval/evidence_image.index": "9c27bdd140302d9de84d7062663a79263a9f92fd807e86783323b768e1a1cdf2",
+      "outputs/pilot/faiss_retrieval/evidence_text.index": "113b1feb9058412543702a9e15accc802da1e77202fcc196a7c8bfa76ac0aec2",
+      "outputs/pilot/faiss_retrieval/retrieval_metrics.json": "367be99b78ae3ad66c52b3e382c3b1eb40806e7533d33cfed53fa795da66b607",
+      "outputs/pilot/faiss_retrieval/image_to_text_raw.parquet": "1bc59cbe6a0a45b89cc3fe292b147d3b5e4489bd303918390db9dd3d9891ee19",
+      "outputs/pilot/faiss_retrieval/image_to_text_filtered.parquet": "ca92924127f8e7fde2bd50c3c42c0edc04c465c52511809a5fc5cb54a4803b4a",
+      "outputs/pilot/faiss_retrieval/image_to_image_filtered.parquet": "47f7641536f72f0aae645df9e85410b5b7557c6112291516d1455de6cdc3613a",
+      "outputs/pilot/faiss_retrieval/retrieval_config.json": "43750a558c2713334175e0df27b6c23fc04f674ac2ef8117ab5fcaeae7bc6d84",
+      "outputs/pilot/faiss_retrieval/text_to_text_raw.parquet": "4d095f79ba6200b96fd7c98a1da800765aad487efb6ec00002e18e12e46c217b",
+      "data/manifests/pilot_evidence.parquet": "1bba9b65061dced0d5a3b83def554796ec39f835902e683196d8995e42b7da3e",
+      "data/manifests/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data/manifests/pilot_image_assets.parquet": "da8de7585b7ab62481cdf2854a53df2fcdc4324725f2b11a3ecd86f2b212c746",
+      "data/manifests/pilot_queries.parquet": "837b59d79d1817d5260e9eceddec581ed1356d53dddbb21452852a666def2934"
+    },
+    "previous_phase_b_outputs_unchanged": true,
+    "new_pairs_disjoint_from_existing": true,
+    "corpus_expanded": false,
+    "embeddings_regenerated": false,
+    "faiss_rebuilt": false,
+    "reranker_trained": false
+  },
+  "outputs": [
+    "pilot_deeper_rank_event_annotations.csv",
+    "pilot_same_event_coverage_by_depth.csv",
+    "pilot_first_same_event_rank.csv",
+    "nontrivial_same_coverage_by_depth.png",
+    "pilot_deeper_rank_coverage_summary.json"
+  ]
+}
