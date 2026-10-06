@@ -1,4 +1,4 @@
-"""One tar pass, bounded image batches, validated Drive checkpoints, separate text jobs.
+"""Resumable tar ranges, bounded image batches, validated checkpoints, separate text jobs.
 
 Notebook 07 supplies the frozen encoder and controls the smoke/full run boundary.
 Only this module's checkpoint directories are writable. Pilot artifacts are read-only.
@@ -10,6 +10,7 @@ import hashlib
 import json
 import tempfile
 import warnings
+import time
 from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
@@ -21,9 +22,13 @@ from PIL import Image, UnidentifiedImageError
 if __package__:
     from .check_missing_assets import safe_relative_path, validate_image_path
     from .extract_selected_images import canonical_member_name, open_archive
+    from .visualnews_archive_resume import (ArchiveResumeError, HTTPRangeSource, ArchiveCursor,
+                                          member_boundary, writer_lock, sync_handle, sync_directory)
 else:
     from check_missing_assets import safe_relative_path, validate_image_path
     from extract_selected_images import canonical_member_name, open_archive
+    from visualnews_archive_resume import (ArchiveResumeError, HTTPRangeSource, ArchiveCursor,
+                                         member_boundary, writer_lock, sync_handle, sync_directory)
 
 
 ARCHIVE_URL = "https://www.cs.rice.edu/~vo9/visualnews/origin.tar"
@@ -48,9 +53,12 @@ def write_json_atomic(path, value):
     with tempfile.NamedTemporaryFile(dir=path.parent, suffix=".tmp", delete=False) as handle:
         temporary = Path(handle.name)
     try:
-        temporary.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+        with temporary.open("w") as handle:
+            handle.write(json.dumps(value, indent=2, allow_nan=False) + "\n")
+            sync_handle(handle)
         assert json.loads(temporary.read_text()) == value
         temporary.replace(path)
+        sync_directory(path.parent)
     finally:
         temporary.unlink(missing_ok=True)
 
@@ -217,7 +225,7 @@ class EmbeddingCheckpoints:
     """Commit array + map + checksum marker; reconstruct completion from validated maps."""
 
     def __init__(self, chunk_dir, state_path, targets, manifest_hash, model_config, modality,
-                 checkpoint_size=5000, failure_log_format="jsonl", gpu_batch_size=64):
+                 checkpoint_size=1000, failure_log_format="jsonl", gpu_batch_size=64):
         if modality not in ("image", "text") or checkpoint_size < 1:
             raise ValueError("Invalid modality/checkpoint size")
         validate_train_manifest(targets, expected_count=len(targets))
@@ -225,6 +233,9 @@ class EmbeddingCheckpoints:
         self.state_path = Path(state_path)
         self.chunk_dir.mkdir(parents=True, exist_ok=True)
         self.state_path.parent.mkdir(parents=True, exist_ok=True)
+        if self.state_path.with_name(self.state_path.name + ".lock").exists():
+            raise ArchiveResumeError("STOP: writer lock exists; confirm old writer stopped before removing only its lock")
+        self._expected_state_hash = file_sha256(self.state_path) if self.state_path.exists() else None
         self.targets = targets
         self.target_lookup = targets.set_index("id")[["image_path", "source", "split"]]
         self.modality = modality
@@ -253,9 +264,10 @@ class EmbeddingCheckpoints:
         self.pending_rows = []
         self.pending_vectors = []
         self.pending_paths = set()
-        self.save_progress("validating_checkpoints")
-        self.reload_completed()
-        self.save_progress("ready")
+        with writer_lock(self.state_path):
+            self.save_progress("validating_checkpoints")
+            self.reload_completed()
+            self.save_progress("ready")
 
     def chunk_paths(self, number):
         suffix = f"chunk_{number:05d}"
@@ -301,7 +313,13 @@ class EmbeddingCheckpoints:
             self.completed_ids.update(ids)
             self.chunks.append(marker)
 
+    def check_state_unchanged(self):
+        actual = file_sha256(self.state_path) if self.state_path.exists() else None
+        if actual != self._expected_state_hash:
+            raise ArchiveResumeError("STOP: progress changed by another writer; reload validated checkpoints")
+
     def save_progress(self, status, **details):
+        self.check_state_unchanged()
         self.state.update(details)
         config = self.signature["model_config"]
         self.state.update(status=status, updated_at_utc=utc_now(),
@@ -316,8 +334,10 @@ class EmbeddingCheckpoints:
                           model=config.get("model_name"), pretrained=config.get("pretrained"),
                           batch_size=self.gpu_batch_size, checkpoint_size=self.checkpoint_size)
         write_json_atomic(self.state_path, self.state)
+        self._expected_state_hash = file_sha256(self.state_path)
 
     def add(self, rows, matrix):
+        self.check_state_unchanged()
         mapping = pd.DataFrame(rows).rename(columns={"id": "metadata_id"})
         mapping.insert(0, "embedding_row_within_chunk", range(len(mapping)))
         validate_chunk(matrix, mapping, self.target_lookup)
@@ -334,6 +354,7 @@ class EmbeddingCheckpoints:
     def flush(self):
         if not self.pending_rows:
             return
+        self.check_state_unchanged()
         number = len(self.chunks)
         array_path, map_path, marker_path = self.chunk_paths(number)
         if any(path.exists() for path in [array_path, map_path, marker_path]):
@@ -349,7 +370,10 @@ class EmbeddingCheckpoints:
                     temporary_paths.append(Path(handle.name))
             with temporary_paths[0].open("wb") as handle:
                 np.save(handle, matrix, allow_pickle=False)
+                sync_handle(handle)
             mapping.to_parquet(temporary_paths[1], index=False)
+            with temporary_paths[1].open("rb") as handle:
+                sync_handle(handle)
             reloaded = np.load(temporary_paths[0], allow_pickle=False)
             reloaded_map = pd.read_parquet(temporary_paths[1])
             validate_chunk(reloaded, reloaded_map, self.target_lookup)
@@ -360,6 +384,7 @@ class EmbeddingCheckpoints:
                 if final.exists():
                     raise FileExistsError("Checkpoint appeared during save; single writer required")
                 temporary.replace(final)
+                sync_directory(final.parent)
             marker = self.chunk_marker(number, np.load(array_path, allow_pickle=False), pd.read_parquet(map_path))
             write_json_atomic(marker_path, marker)
             self.chunks.append(marker)
@@ -388,7 +413,7 @@ class EmbeddingCheckpoints:
                                  "error": record["error_type"] + ": " + record["error_message"]})
             else:
                 handle.write(json.dumps(record) + "\n")
-            handle.flush()
+            sync_handle(handle)
         self.state["failure_attempt_count"] = self.state.get("failure_attempt_count", 0) + 1
         self.save_progress("image_failure_recorded")
 
@@ -525,6 +550,12 @@ def stream_image_embeddings(store, preprocess, encode_batch, gpu_batch_size=64,
 
 
 def encode_text_embeddings(store, encode_batch, gpu_batch_size=64):
+    with writer_lock(store.state_path):
+        store.check_state_unchanged()
+        return _encode_text_embeddings(store, encode_batch, gpu_batch_size)
+
+
+def _encode_text_embeddings(store, encode_batch, gpu_batch_size=64):
     if store.modality != "text" or gpu_batch_size < 1:
         raise ValueError("Text encoding requires text checkpoints and a positive batch size")
     remaining = store.targets.loc[~store.targets.image_path.isin(store.completed_paths)]
@@ -544,3 +575,232 @@ def encode_text_embeddings(store, encode_batch, gpu_batch_size=64):
         store.flush()
         store.save_progress("interrupted", last_run=result)
         raise
+
+
+def stream_resumable_image_embeddings(store, preprocess, encode_batch, gpu_batch_size=64,
+                                      archive_url=ARCHIVE_URL, source=None,
+                                      max_new_images_per_session=None, progress_every=10000,
+                                      max_consecutive_failures=5, failure_fraction_limit=0.10,
+                                      failure_rate_min_attempts=20, no_match_member_limit=100000):
+    """Resume at a logical tar boundary after durable vectors/failures, never HTTP tell.
+
+    The session limit is checked after a GPU batch; overshoot is at most batch_size-1.
+    Decode failures before the cursor are retried with bounded conditional ranges.
+    """
+    if store.modality != "image" or gpu_batch_size < 1 or progress_every < 1:
+        raise ValueError("Invalid image store/batch/progress configuration")
+    if max_new_images_per_session is not None and (type(max_new_images_per_session) is not int or max_new_images_per_session < 1):
+        raise ValueError("Session limit must be a positive integer or None")
+    if store.pending_rows or store.pending_vectors:
+        raise ArchiveResumeError("STOP: reload checkpoint store after an interrupted call; discard unsaved buffers")
+    started = time.perf_counter()
+    initial_done = len(store.completed_ids)
+    result = {"target_count": len(store.targets), "already_completed": initial_done,
+              "encoded_this_run": 0, "failed_this_run": 0, "found_this_run": 0,
+              "scanned_members_this_run": 0, "archive_passes_this_run": 0,
+              "unsafe_members_skipped": 0, "resume_start_offset": None,
+              "committed_archive_offset": None, "archive_size": None,
+              "encoder_seconds": 0.0, "checkpoint_seconds": 0.0}
+    with writer_lock(store.state_path):
+        store.check_state_unchanged()
+        if initial_done == len(store.targets):
+            previous = store.state.get("last_run", {})
+            for key in ["committed_archive_offset", "archive_size", "archive_scan_percent"]:
+                result[key] = previous.get(key)
+            result.update(status="complete", completed_targets=initial_done, remaining_targets=0,
+                          unresolved_failures=0, checkpoint_count=len(store.chunks),
+                          target_completion_percent=100.0, elapsed_seconds=time.perf_counter() - started)
+            store.save_progress("complete", last_run=result)
+            return result  # No source construction, HTTP probe or GPU call.
+        cursor = ArchiveCursor(store)
+        expected = cursor.state["source"] if cursor.state else None
+        if expected is None and cursor.failures:
+            identities = [entry["source"] for entry in cursor.failures.values()]
+            if any(item != identities[0] for item in identities):
+                raise ArchiveResumeError("STOP: conflicting source identities in failure journal")
+            expected = identities[0]
+        source = source or HTTPRangeSource(archive_url)
+        identity = source.probe(expected)
+        if cursor.state is None:
+            cursor.commit(0, {}, identity)
+        base = cursor.state["next_offset"]
+        boundary, pax = base, cursor.state["pax_headers"].copy()
+        eof = cursor.state["archive_eof"]
+        result.update(resume_start_offset=base, archive_size=identity["size"])
+        requested = {row["image_path"].removeprefix("visual_news/"): row
+                     for row in store.targets[["id", "image_path", "source", "split"]].to_dict("records")}
+        tensors, rows, matched = [], [], set()
+        consecutive = 0
+        attempts = 0
+
+        def report(status, print_status=False):
+            unresolved = set(cursor.failures) - store.completed_paths
+            result.update(status=status, completed_targets=len(store.completed_ids),
+                          remaining_targets=len(store.targets) - len(store.completed_ids),
+                          unresolved_failures=len(unresolved),
+                          failed_attempts_total=store.state.get("failure_attempt_count", 0),
+                          checkpoint_count=len(store.chunks),
+                          committed_archive_offset=cursor.state["next_offset"],
+                          archive_scan_percent=100 * cursor.state["next_offset"] / identity["size"],
+                          target_completion_percent=100 * len(store.completed_ids) / len(store.targets),
+                          elapsed_seconds=time.perf_counter() - started)
+            store.save_progress(status, last_run=result)
+            if print_status:
+                print(json.dumps(result, indent=2), flush=True)
+
+        def commit(eof_state=False):
+            if tensors or rows or store.pending_vectors:
+                raise ArchiveResumeError("STOP: candidate cursor still has uncommitted target work")
+            old_chunk_count = len(cursor.state["checkpoints"])
+            before = time.perf_counter()
+            cursor.commit(boundary, pax, identity, eof_state)
+            result["checkpoint_seconds"] += time.perf_counter() - before
+            report("streaming")
+            if len(store.chunks) > old_chunk_count:
+                print(f"Images {result['completed_targets']:,}/{result['target_count']:,}; "
+                      f"remaining {result['remaining_targets']:,}; new {result['encoded_this_run']:,}; "
+                      f"failed attempts {result['failed_this_run']:,}; unresolved {result['unresolved_failures']:,}; "
+                      f"chunks {len(store.chunks):,}; committed byte {boundary:,}; "
+                      f"scan {result['archive_scan_percent']:.2f}%; targets {result['target_completion_percent']:.2f}%; "
+                      f"elapsed {result['elapsed_seconds']:.1f}s; encode {result['encoder_seconds']:.1f}s; "
+                      f"checkpoint/cursor {result['checkpoint_seconds']:.1f}s", flush=True)
+
+        def encode_pending():
+            if not tensors:
+                return
+            before = time.perf_counter()
+            embeddings = encode_batch(tensors)  # GPU errors propagate; never logged as decode errors.
+            result["encoder_seconds"] += time.perf_counter() - before
+            before = time.perf_counter()
+            store.add(rows, embeddings)
+            result["checkpoint_seconds"] += time.perf_counter() - before
+            result["encoded_this_run"] += len(rows)
+            tensors.clear()
+            rows.clear()
+
+        def flush_vectors():
+            before = time.perf_counter()
+            store.flush()
+            result["checkpoint_seconds"] += time.perf_counter() - before
+
+        def limited():
+            return max_new_images_per_session is not None and result["encoded_this_run"] >= max_new_images_per_session
+
+        def decode(payload, row, member_offset, data_offset, size, regular):
+            nonlocal consecutive, attempts
+            attempts += 1
+            result["found_this_run"] += 1
+            try:
+                if not regular or not 0 < size <= 32 * 1024 * 1024:
+                    raise ValueError("Target must be a bounded, nonempty regular file")
+                with warnings.catch_warnings():
+                    warnings.simplefilter("error", Image.DecompressionBombWarning)
+                    with Image.open(BytesIO(payload)) as image:
+                        with image.convert("RGB") as rgb:
+                            tensor = preprocess(rgb)
+            except (OSError, ValueError, SyntaxError, EOFError, UnidentifiedImageError,
+                    Image.DecompressionBombError, Image.DecompressionBombWarning) as error:
+                cursor.record_failure(row, error, member_offset, data_offset, size, regular, identity)
+                result["failed_this_run"] += 1
+                consecutive += 1
+                if consecutive >= max_consecutive_failures or (attempts >= failure_rate_min_attempts and result["failed_this_run"] / attempts > failure_fraction_limit):
+                    raise RuntimeError("STOP: image decode failure safety limit; inspect CSV and range failure journal") from error
+            else:
+                consecutive = 0
+                tensors.append(tensor)
+                rows.append(mapping_record(row))
+                # Short checkpoint-ending batches produce exactly 1000-row new chunks.
+                if len(tensors) >= gpu_batch_size or len(store.pending_vectors) + len(tensors) >= store.checkpoint_size:
+                    encode_pending()
+
+        try:
+            # Retry only durable failures behind the saved boundary. Later records replay in the stream.
+            for record in list(cursor.failures.values()):
+                if record["image_path"] in store.completed_paths or record["data_offset"] + record["size"] > base:
+                    continue
+                row = requested[record["image_path"].removeprefix("visual_news/")]
+                payload = source.read_image_bytes(record["data_offset"], record["size"], identity) if record["regular"] and 0 < record["size"] <= 32 * 1024 * 1024 else b""
+                decode(payload, row, record["member_offset"], record["data_offset"], record["size"], record["regular"])
+                if not tensors and not store.pending_vectors:
+                    commit(eof)
+                if limited():
+                    flush_vectors()
+                    commit(eof)
+                    report("stopped_intentionally", True)
+                    return result
+            encode_pending()
+            flush_vectors()
+            commit(eof)  # Retry vectors never move the forward boundary.
+            if limited() and len(store.completed_ids) != len(store.targets):
+                report("stopped_intentionally", True)
+                return result
+            if len(store.completed_ids) != len(store.targets) and not eof:
+                recognized = base > 0
+                store.state["archive_passes_opened"] += 1
+                result["archive_passes_this_run"] += 1
+                with source.open_tar(base, pax, identity) as archive:
+                    for member in archive:
+                        archive.members.clear()
+                        boundary, pax = member_boundary(archive, member, base, identity["size"])
+                        result["scanned_members_this_run"] += 1
+                        store.state["scanned_archive_member_count"] += 1
+                        try:
+                            name = canonical_member_name(member.name)
+                        except ValueError:
+                            name = None
+                            result["unsafe_members_skipped"] += 1
+                        if name is not None and member.isfile():
+                            try:
+                                validate_image_path("visual_news/" + name)
+                                recognized = True
+                            except ValueError:
+                                pass
+                        if not recognized and result["scanned_members_this_run"] >= no_match_member_limit:
+                            raise ArchiveResumeError("STOP: archive path layout unrecognized")
+                        row = requested.get(name)
+                        if row is not None:
+                            if name in matched:
+                                raise ArchiveResumeError("STOP: duplicate target member in archive")
+                            matched.add(name)
+                            if row["image_path"] not in store.completed_paths:
+                                payload = b""
+                                if member.isfile() and 0 < member.size <= 32 * 1024 * 1024:
+                                    with archive.extractfile(member) as handle:
+                                        payload = handle.read(member.size)
+                                    if len(payload) != member.size:
+                                        raise ArchiveResumeError("STOP: truncated image transport payload")
+                                decode(payload, row, base + member.offset, base + member.offset_data, member.size, member.isfile())
+                        if not tensors and not store.pending_vectors:
+                            newly_durable = (len(store.chunks) > len(cursor.state["checkpoints"]) or
+                                             cursor.journal_size > cursor.state["failure_journal_bytes"])
+                            if newly_durable or result["scanned_members_this_run"] % progress_every == 0:
+                                commit()
+                        if limited():
+                            flush_vectors()
+                            commit()
+                            report("stopped_intentionally", True)
+                            return result
+                        if result["scanned_members_this_run"] % progress_every == 0:
+                            report("streaming", True)
+                        if len(store.completed_ids) == len(store.targets):
+                            break
+                    else:
+                        eof = True  # Strict parser verified two complete zero blocks.
+                encode_pending()
+                flush_vectors()
+                commit(eof)
+            complete = len(store.completed_ids) == len(store.targets)
+            unknown_missing = set(store.targets.image_path) - store.completed_paths - set(cursor.failures)
+            report("complete" if complete else "incomplete", True)
+            if eof and unknown_missing:
+                raise ArchiveResumeError(f"STOP: {len(unknown_missing)} targets absent at verified archive EOF; preserve state and check manifest/source; no reduced-corpus merge")
+            return result
+        except BaseException:
+            # Do not publish a candidate cursor that includes a still-pending GPU batch.
+            # Already validated chunks survive; at most uncommitted work is replayed.
+            if store._expected_state_hash == (file_sha256(store.state_path) if store.state_path.exists() else None):
+                report("interrupted")
+            raise
+        finally:
+            tensors.clear()
+            rows.clear()

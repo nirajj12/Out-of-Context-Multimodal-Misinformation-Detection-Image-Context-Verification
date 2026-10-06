@@ -194,8 +194,8 @@ def test_csv_failures_and_simple_progress_fields(tmp_path):
 
 def test_all_notebook_production_branches_disabled_by_default():
     import ast
-    namespace = {'RUN_IMAGE_PRODUCTION': False, 'RUN_TEXT_PRODUCTION': False,
-                 'RUN_MERGE_IMAGES': False, 'RUN_MERGE_TEXT': False, 'RUN_FINAL_VALIDATION': False}
+    namespace = {'RUN_IMAGE_EMBEDDING': False, 'RUN_TEXT_EMBEDDING': False,
+                 'RUN_IMAGE_MERGE': False, 'RUN_TEXT_MERGE': False, 'RUN_FINAL_VALIDATION': False}
     expected_defaults = namespace.copy()
     actual_defaults = {}
     for cell in production_notebook_cells():
@@ -232,62 +232,60 @@ def notebook_namespace(tmp_path, table):
         'image_progress_path': root / 'image_embedding_progress.json',
         'text_progress_path': root / 'text_embedding_progress.json',
         'GPU_BATCH_SIZE': 2, 'CHECKPOINT_SIZE': 2,
-        'RUN_IMAGE_PRODUCTION': False, 'RUN_TEXT_PRODUCTION': False,
-        'RUN_MERGE_IMAGES': False, 'RUN_MERGE_TEXT': False, 'RUN_FINAL_VALIDATION': False,
+        'RUN_IMAGE_EMBEDDING': False, 'RUN_TEXT_EMBEDDING': False,
+        'RUN_IMAGE_MERGE': False, 'RUN_TEXT_MERGE': False, 'RUN_FINAL_VALIDATION': False,
     }
     from scripts.check_missing_assets import validate_image_path
     from scripts.extract_selected_images import canonical_member_name
-    namespace.update(validate_image_path=validate_image_path, canonical_member_name=canonical_member_name)
+    from scripts.visualnews_archive_resume import writer_lock
+    namespace.update(validate_image_path=validate_image_path, canonical_member_name=canonical_member_name,
+                     writer_lock=writer_lock, MAX_NEW_IMAGES_PER_SESSION=None, large_embedding_dir=root)
     return namespace
+
+
+def install_notebook_mock_http(namespace, path):
+    from tests.test_visualnews_archive_resume import MockHTTP
+    from scripts.visualnews_stream_embeddings import stream_resumable_image_embeddings
+    http = MockHTTP(path.read_bytes())
+    def runner(*args, **kwargs):
+        return stream_resumable_image_embeddings(*args, source=http.source(), **kwargs)
+    namespace['stream_resumable_image_embeddings'] = runner
+    return http
 
 
 def test_notebook_image_and_text_loops_one_pass_then_skip_completed(tmp_path):
     table = targets(5)
     namespace = notebook_namespace(tmp_path, table)
-    path = archive_fixture(tmp_path, table)
-    opened, gpu_calls = [], []
-
-    @contextmanager
-    def fixture_archive(archive_url):
-        opened.append(archive_url)
-        with tarfile.open(path, mode='r|*') as archive:
-            yield archive, None
-
-    namespace['open_archive'] = fixture_archive
+    http = install_notebook_mock_http(namespace, archive_fixture(tmp_path, table))
+    gpu_calls = []
     namespace['image_preprocess'] = lambda image: np.asarray(image)
     cells = production_notebook_cells()
     for cell in cells:
-        if cell.source.startswith(('def read_image_tensor', 'def encode_image_tensors', 'def handle_image_member',
-                                   'def check_member_layout', 'def finish_image_stream')):
+        if cell.source.startswith('def encode_image_tensors'):
             exec(cell.source, namespace)
-
     def fake_encoder(tensors):
         gpu_calls.append(len(tensors))
         return vectors(len(tensors))
-
-    namespace['encode_image_tensors'] = fake_encoder
-    namespace['RUN_IMAGE_PRODUCTION'] = True
+    namespace.update(encode_image_tensors=fake_encoder, RUN_IMAGE_EMBEDDING=True)
     image_cells = [cell for cell in cells if cell.metadata.get('production_stage') == 'image']
     for cell in image_cells:
         exec(cell.source, namespace)
-    assert namespace['image_run']['encoded'] == 5 and gpu_calls == [2, 2, 1]
-    assert len(opened) == 1 and len(namespace['image_checkpoints'].completed_paths) == 5
+    assert namespace['image_run']['encoded_this_run'] == 5 and gpu_calls == [2, 2, 1]
+    assert len(http.requests) == 2 and len(namespace['image_checkpoints'].completed_paths) == 5
     for cell in image_cells:
         exec(cell.source, namespace)
-    assert len(opened) == 1 and gpu_calls == [2, 2, 1]
-
+    assert len(http.requests) == 2 and gpu_calls == [2, 2, 1]
     seen_captions = []
     def fake_text(captions):
         seen_captions.extend(captions)
         return vectors(len(captions))
-    namespace['encode_caption_batch'] = fake_text
-    namespace['RUN_TEXT_PRODUCTION'] = True
+    namespace.update(encode_caption_batch=fake_text, RUN_TEXT_EMBEDDING=True)
     text_cells = [cell for cell in cells if cell.metadata.get('production_stage') == 'text']
     for cell in text_cells:
         exec(cell.source, namespace)
     for cell in text_cells:
         exec(cell.source, namespace)
-    assert seen_captions == table.caption.tolist() and len(opened) == 1
+    assert seen_captions == table.caption.tolist() and len(http.requests) == 2
 
 
 def merge_namespace(tmp_path, table):
@@ -356,38 +354,164 @@ def test_notebook_merge_refuses_missing_or_corrupted_targets(tmp_path):
 def test_notebook_image_failure_logs_csv_and_resumes_only_failed_image(tmp_path):
     table = targets(5)
     namespace = notebook_namespace(tmp_path, table)
-    path = archive_fixture(tmp_path, table, corrupt_index=2)
-    opened = []
-
-    @contextmanager
-    def fixture_archive(archive_url):
-        opened.append(archive_url)
-        with tarfile.open(path, mode='r|*') as archive:
-            yield archive, None
-
-    namespace.update(open_archive=fixture_archive, image_preprocess=lambda image: np.asarray(image))
+    http = install_notebook_mock_http(namespace, archive_fixture(tmp_path, table))
+    preprocess_calls = []
+    def transient_preprocess(image):
+        preprocess_calls.append(1)
+        if len(preprocess_calls) == 3:
+            raise ValueError('transient image decoder failure')
+        return np.asarray(image)
+    namespace['image_preprocess'] = transient_preprocess
     for cell in production_notebook_cells():
-        if cell.source.startswith(('def read_image_tensor', 'def encode_image_tensors', 'def handle_image_member',
-                                   'def check_member_layout', 'def finish_image_stream')):
+        if cell.source.startswith('def encode_image_tensors'):
             exec(cell.source, namespace)
     encoded_batch_sizes = []
     def encode(tensors):
         encoded_batch_sizes.append(len(tensors))
         return vectors(len(tensors))
-    namespace.update(encode_image_tensors=encode, RUN_IMAGE_PRODUCTION=True)
+    namespace.update(encode_image_tensors=encode, RUN_IMAGE_EMBEDDING=True)
     image_cells = [cell for cell in production_notebook_cells() if cell.metadata.get('production_stage') == 'image']
     with pytest.raises(RuntimeError, match='unfinished images remain'):
         for cell in image_cells:
             exec(cell.source, namespace)
-    s = namespace['image_checkpoints']
-    assert s.completed_ids == {0, 1, 3, 4}
-    assert pd.read_csv(s.failures_path).id.tolist() == [2]
-    before = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in s.chunk_dir.iterdir()}
-    archive_fixture(tmp_path, table)  # A corrected tiny fixture, not a remote rescan.
+    checkpoints = namespace['image_checkpoints']
+    assert checkpoints.completed_ids == {0, 1, 3, 4}
+    assert pd.read_csv(checkpoints.failures_path).id.tolist() == [2]
+    before = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in checkpoints.chunk_dir.iterdir()}
+    request_count = len(http.requests)
     for cell in image_cells:
         exec(cell.source, namespace)
-    assert namespace['image_run']['encoded'] == 1 and len(opened) == 2
+    assert namespace['image_run']['encoded_this_run'] == 1
+    assert len(http.requests) == request_count + 2  # Small probe + bounded failed-image payload; no tar rescan.
     assert encoded_batch_sizes == [2, 2, 1]
     assert namespace['image_checkpoints'].completed_ids == set(range(5))
     for filename, checksum in before.items():
-        assert hashlib.sha256((s.chunk_dir / filename).read_bytes()).hexdigest() == checksum
+        assert hashlib.sha256((checkpoints.chunk_dir / filename).read_bytes()).hexdigest() == checksum
+
+
+def repository_setup_source():
+    for cell in production_notebook_cells():
+        if cell.metadata.get('setup_stage') == 'repository':
+            return cell.source
+    raise AssertionError('Repository setup cell missing')
+
+
+def run_git(path, *arguments):
+    import subprocess
+    return subprocess.run(['git', '-C', str(path), *arguments], check=True,
+                          text=True, capture_output=True).stdout.strip()
+
+
+def commit_fixture_file(path, text):
+    (path / 'README.md').write_text(text)
+    run_git(path, 'add', 'README.md')
+    run_git(path, '-c', 'core.hooksPath=/dev/null', '-c', 'commit.gpgsign=false',
+            'commit', '-m', 'Fixture update')
+
+
+def make_local_git_origin(tmp_path):
+    import subprocess
+    origin = tmp_path / 'origin'
+    subprocess.run(['git', 'init', '--initial-branch=main', str(origin)],
+                   check=True, capture_output=True)
+    run_git(origin, 'config', 'user.name', 'Test Fixture')
+    run_git(origin, 'config', 'user.email', 'fixture@localhost')
+    commit_fixture_file(origin, 'first version')
+    return origin
+
+
+def colab_repository_namespace(tmp_path, origin):
+    import subprocess
+    from pathlib import Path
+    return {'Path': Path, 'subprocess': subprocess, 'REPO_URL': str(origin),
+            'COLAB_REPO_ROOT': str(tmp_path / 'colab_checkout')}
+
+
+def test_notebook_repo_setup_clones_and_fast_forwards_local_fixture(tmp_path):
+    origin = make_local_git_origin(tmp_path)
+    namespace = colab_repository_namespace(tmp_path, origin)
+    source = repository_setup_source()
+    exec(source, namespace)
+    checkout = namespace['repo_root']
+    assert run_git(checkout, 'branch', '--show-current') == 'main'
+    assert (checkout / 'README.md').read_text() == 'first version'
+    commit_fixture_file(origin, 'second version')
+    exec(source, namespace)
+    assert (checkout / 'README.md').read_text() == 'second version'
+    assert run_git(checkout, 'rev-parse', 'HEAD') == run_git(origin, 'rev-parse', 'HEAD')
+
+
+@pytest.mark.parametrize('problem', ['dirty', 'branch', 'origin', 'nongit'])
+def test_notebook_repo_setup_preserves_unsafe_existing_checkout(tmp_path, problem):
+    from pathlib import Path
+    origin = make_local_git_origin(tmp_path)
+    namespace = colab_repository_namespace(tmp_path, origin)
+    source = repository_setup_source()
+    if problem == 'nongit':
+        checkout = Path(namespace['COLAB_REPO_ROOT'])
+        checkout.mkdir()
+        (checkout / 'user_file.txt').write_text('preserve this')
+        with pytest.raises(RuntimeError, match='not a Git checkout'):
+            exec(source, namespace)
+        assert (checkout / 'user_file.txt').read_text() == 'preserve this'
+        return
+    exec(source, namespace)
+    checkout = namespace['repo_root']
+    original_head = run_git(checkout, 'rev-parse', 'HEAD')
+    if problem == 'dirty':
+        (checkout / 'README.md').write_text('local user edits')
+        message = 'local changes'
+    elif problem == 'branch':
+        run_git(checkout, 'checkout', '-b', 'experiment')
+        message = 'clean main checkout'
+    else:
+        run_git(checkout, 'remote', 'set-url', 'origin', str(tmp_path / 'different_origin'))
+        message = 'origin is not the project'
+    with pytest.raises(RuntimeError, match=message):
+        exec(source, namespace)
+    assert run_git(checkout, 'rev-parse', 'HEAD') == original_head
+    if problem == 'dirty':
+        assert (checkout / 'README.md').read_text() == 'local user edits'
+
+
+def test_notebook_repo_setup_refuses_diverged_history_without_reset(tmp_path):
+    import subprocess
+    origin = make_local_git_origin(tmp_path)
+    namespace = colab_repository_namespace(tmp_path, origin)
+    source = repository_setup_source()
+    exec(source, namespace)
+    checkout = namespace['repo_root']
+    run_git(checkout, 'config', 'user.name', 'Test Fixture')
+    run_git(checkout, 'config', 'user.email', 'fixture@localhost')
+    commit_fixture_file(checkout, 'local commit to preserve')
+    local_head = run_git(checkout, 'rev-parse', 'HEAD')
+    commit_fixture_file(origin, 'different upstream commit')
+    with pytest.raises(subprocess.CalledProcessError):
+        exec(source, namespace)
+    assert run_git(checkout, 'rev-parse', 'HEAD') == local_head
+    assert (checkout / 'README.md').read_text() == 'local commit to preserve'
+    assert run_git(checkout, 'status', '--porcelain') == ''
+
+
+def test_notebook_packages_only_installs_missing_dependencies(tmp_path, monkeypatch):
+    import importlib.metadata
+    from types import SimpleNamespace
+    source = next(cell.source for cell in production_notebook_cells()
+                  if cell.metadata.get('setup_stage') == 'packages')
+    (tmp_path / 'clip_embedding_config.json').write_text(json.dumps({'openclip_version': '3.3.0'}))
+    commands = []
+    def package_version(name):
+        if name in ['open_clip_torch', 'pyarrow', 'Pillow']:
+            raise importlib.metadata.PackageNotFoundError(name)
+        return 'installed'
+    monkeypatch.setattr(importlib.metadata, 'version', package_version)
+    namespace = {'pilot_embedding_dir': tmp_path,
+                 'subprocess': SimpleNamespace(check_call=lambda command: commands.append(command))}
+    exec(source, namespace)
+    assert len(commands) == 1
+    assert commands[0][-3:] == ['pyarrow', 'Pillow', 'open_clip_torch==3.3.0']
+    assert not any('faiss' in part.lower() for part in commands[0])
+    monkeypatch.setattr(importlib.metadata, 'version', lambda name: 'different')
+    with pytest.raises(RuntimeError, match='differs from the frozen pilot'):
+        exec(source, namespace)
+    assert len(commands) == 1
