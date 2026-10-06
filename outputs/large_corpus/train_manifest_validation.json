@@ -1,0 +1,34 @@
+{
+  "validation_passed": true,
+  "train_count": 385003,
+  "columns": [
+    "id",
+    "image_path",
+    "caption",
+    "source",
+    "title",
+    "article_path",
+    "full_article_path",
+    "timestamp",
+    "topic",
+    "split"
+  ],
+  "manifest_path": "/Users/nirajmac/Documents/MajorProject/data/manifests/visualnews_train_evidence.parquet",
+  "size_bytes": 33287601,
+  "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+  "metadata_sha256": "68f7794c83909c3030e30104de670a16863da4b6cd2ffe05905c383311d4c546",
+  "unique_ids": 385003,
+  "unique_image_paths": 385003,
+  "source_counts": {
+    "guardian": 185203,
+    "usa_today": 81249,
+    "washington_post": 59281,
+    "bbc": 59270
+  },
+  "null_title_count": 112,
+  "all_train": true,
+  "status": "existing identical manifest preserved",
+  "ids_paths_captions_preserved": true,
+  "construction_labels_added": false,
+  "timestamp_semantics": "Article-associated timestamp; not asserted event/capture date."
+}

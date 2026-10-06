@@ -1,0 +1,317 @@
+{
+  "status": "passed",
+  "train_metadata_count": 385003,
+  "manifest_path": "/content/drive/MyDrive/MajorProjectAssets/manifests/visualnews_train_evidence.parquet",
+  "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+  "manifest_size_bytes": 33287601,
+  "manifest_columns": [
+    "id",
+    "image_path",
+    "caption",
+    "source",
+    "title",
+    "article_path",
+    "full_article_path",
+    "timestamp",
+    "topic",
+    "split"
+  ],
+  "runtime_bundle_sha256": "e0ef40ad8ee686fc545e261656ae4f9c6cfe243c333b78fd43cfa174a11d1ecd",
+  "model_config": {
+    "model_name": "ViT-B-32",
+    "pretrained": "openai",
+    "activation": "QuickGELU",
+    "force_quick_gelu": true,
+    "embedding_dimension": 512,
+    "saved_dtype": "float32",
+    "frozen": true,
+    "image_preprocessing": "Compose(\n    Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeConvertMode()\n    MaybeToTensor()\n    Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))\n)",
+    "image_loading": "Pillow default frame, RGB conversion in memory",
+    "tokenizer_source": "open_clip.get_tokenizer(model_name)",
+    "tokenizer_context_length": 77,
+    "normalization_method": "float32 L2 normalization per row before CPU numpy conversion",
+    "openclip_version": "3.3.0"
+  },
+  "gpu": "Tesla T4",
+  "gpu_batch_size": 64,
+  "smoke_target_count": 100,
+  "smoke_selection": "TRAIN BBC 0038, image_path sorted, first 100",
+  "image_smoke": {
+    "target_count": 100,
+    "already_completed": 0,
+    "found_this_run": 100,
+    "encoded_this_run": 100,
+    "failed_this_run": 0,
+    "scanned_members_this_run": 997,
+    "archive_passes_this_run": 1,
+    "unsafe_members_skipped": 0,
+    "missing_targets": 0,
+    "gpu_batch_size": 64
+  },
+  "image_chunk_validations": [
+    {
+      "rows": 50,
+      "shape": [
+        50,
+        512
+      ],
+      "dtype": "float32",
+      "min_norm": 0.9999998807907104,
+      "max_norm": 1.0000001192092896,
+      "finite": true
+    },
+    {
+      "rows": 50,
+      "shape": [
+        50,
+        512
+      ],
+      "dtype": "float32",
+      "min_norm": 0.9999998807907104,
+      "max_norm": 1.0,
+      "finite": true
+    }
+  ],
+  "image_resume": {
+    "target_count": 100,
+    "already_completed": 100,
+    "found_this_run": 0,
+    "encoded_this_run": 0,
+    "failed_this_run": 0,
+    "scanned_members_this_run": 0,
+    "archive_passes_this_run": 0,
+    "unsafe_members_skipped": 0,
+    "missing_targets": 0,
+    "gpu_batch_size": 64
+  },
+  "text_smoke": {
+    "target_count": 100,
+    "already_completed": 0,
+    "encoded_this_run": 100,
+    "gpu_batch_size": 64,
+    "archive_passes_this_run": 0
+  },
+  "text_chunk_validations": [
+    {
+      "rows": 50,
+      "shape": [
+        50,
+        512
+      ],
+      "dtype": "float32",
+      "min_norm": 0.9999998807907104,
+      "max_norm": 1.0000001192092896,
+      "finite": true
+    },
+    {
+      "rows": 50,
+      "shape": [
+        50,
+        512
+      ],
+      "dtype": "float32",
+      "min_norm": 0.9999998807907104,
+      "max_norm": 1.0000001192092896,
+      "finite": true
+    }
+  ],
+  "text_resume": {
+    "target_count": 100,
+    "already_completed": 100,
+    "encoded_this_run": 0,
+    "gpu_batch_size": 64,
+    "archive_passes_this_run": 0
+  },
+  "image_chunks": [
+    {
+      "signature": {
+        "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+        "model_config": {
+          "model_name": "ViT-B-32",
+          "pretrained": "openai",
+          "activation": "QuickGELU",
+          "force_quick_gelu": true,
+          "embedding_dimension": 512,
+          "saved_dtype": "float32",
+          "frozen": true,
+          "image_preprocessing": "Compose(\n    Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeConvertMode()\n    MaybeToTensor()\n    Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))\n)",
+          "image_loading": "Pillow default frame, RGB conversion in memory",
+          "tokenizer_source": "open_clip.get_tokenizer(model_name)",
+          "tokenizer_context_length": 77,
+          "normalization_method": "float32 L2 normalization per row before CPU numpy conversion",
+          "openclip_version": "3.3.0"
+        },
+        "modality": "image",
+        "target_count": 100,
+        "target_selection_sha256": "5a71f2212f86369b42554ddebce411113af77dacef48b386750883baab7a46d0"
+      },
+      "number": 0,
+      "validation": {
+        "rows": 50,
+        "shape": [
+          50,
+          512
+        ],
+        "dtype": "float32",
+        "min_norm": 0.9999998807907104,
+        "max_norm": 1.0000001192092896,
+        "finite": true
+      },
+      "embedding_file": "image_embeddings_chunk_00000.npy",
+      "mapping_file": "image_embedding_map_chunk_00000.parquet",
+      "embedding_sha256": "b54a6ebeeb21f04f631886db4ec6f656fe01e60593813ac7c3286099e99295fe",
+      "mapping_sha256": "03af8cf575f1d40b0af98186bb3da0c8a9cd0f210c341b519cbb36515d3032c7"
+    },
+    {
+      "signature": {
+        "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+        "model_config": {
+          "model_name": "ViT-B-32",
+          "pretrained": "openai",
+          "activation": "QuickGELU",
+          "force_quick_gelu": true,
+          "embedding_dimension": 512,
+          "saved_dtype": "float32",
+          "frozen": true,
+          "image_preprocessing": "Compose(\n    Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeConvertMode()\n    MaybeToTensor()\n    Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))\n)",
+          "image_loading": "Pillow default frame, RGB conversion in memory",
+          "tokenizer_source": "open_clip.get_tokenizer(model_name)",
+          "tokenizer_context_length": 77,
+          "normalization_method": "float32 L2 normalization per row before CPU numpy conversion",
+          "openclip_version": "3.3.0"
+        },
+        "modality": "image",
+        "target_count": 100,
+        "target_selection_sha256": "5a71f2212f86369b42554ddebce411113af77dacef48b386750883baab7a46d0"
+      },
+      "number": 1,
+      "validation": {
+        "rows": 50,
+        "shape": [
+          50,
+          512
+        ],
+        "dtype": "float32",
+        "min_norm": 0.9999998807907104,
+        "max_norm": 1.0,
+        "finite": true
+      },
+      "embedding_file": "image_embeddings_chunk_00001.npy",
+      "mapping_file": "image_embedding_map_chunk_00001.parquet",
+      "embedding_sha256": "d0359bf4b7d12b22f5150eb3821823c210b94bc3356b87b445766abac0fae35b",
+      "mapping_sha256": "ade2b9a6b374119de9db87630993e9b1dc0c6342f3beb14936297a550fa4091b"
+    }
+  ],
+  "text_chunks": [
+    {
+      "signature": {
+        "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+        "model_config": {
+          "model_name": "ViT-B-32",
+          "pretrained": "openai",
+          "activation": "QuickGELU",
+          "force_quick_gelu": true,
+          "embedding_dimension": 512,
+          "saved_dtype": "float32",
+          "frozen": true,
+          "image_preprocessing": "Compose(\n    Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeConvertMode()\n    MaybeToTensor()\n    Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))\n)",
+          "image_loading": "Pillow default frame, RGB conversion in memory",
+          "tokenizer_source": "open_clip.get_tokenizer(model_name)",
+          "tokenizer_context_length": 77,
+          "normalization_method": "float32 L2 normalization per row before CPU numpy conversion",
+          "openclip_version": "3.3.0"
+        },
+        "modality": "text",
+        "target_count": 100,
+        "target_selection_sha256": "5a71f2212f86369b42554ddebce411113af77dacef48b386750883baab7a46d0"
+      },
+      "number": 0,
+      "validation": {
+        "rows": 50,
+        "shape": [
+          50,
+          512
+        ],
+        "dtype": "float32",
+        "min_norm": 0.9999998807907104,
+        "max_norm": 1.0000001192092896,
+        "finite": true
+      },
+      "embedding_file": "text_embeddings_chunk_00000.npy",
+      "mapping_file": "text_embedding_map_chunk_00000.parquet",
+      "embedding_sha256": "a6968010d366460d8bba2eb957c480f55a4080a77261cc2680b96cf18ca34e81",
+      "mapping_sha256": "63b51a42803007e156411d48258c015b4401e10c4a9a72fba0528bf6e9c8cd57"
+    },
+    {
+      "signature": {
+        "manifest_sha256": "6bd26d4371c69c16a92c512b2d5862579fbe26ff52775a74dda5f5831eb3d1fa",
+        "model_config": {
+          "model_name": "ViT-B-32",
+          "pretrained": "openai",
+          "activation": "QuickGELU",
+          "force_quick_gelu": true,
+          "embedding_dimension": 512,
+          "saved_dtype": "float32",
+          "frozen": true,
+          "image_preprocessing": "Compose(\n    Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeConvertMode()\n    MaybeToTensor()\n    Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))\n)",
+          "image_loading": "Pillow default frame, RGB conversion in memory",
+          "tokenizer_source": "open_clip.get_tokenizer(model_name)",
+          "tokenizer_context_length": 77,
+          "normalization_method": "float32 L2 normalization per row before CPU numpy conversion",
+          "openclip_version": "3.3.0"
+        },
+        "modality": "text",
+        "target_count": 100,
+        "target_selection_sha256": "5a71f2212f86369b42554ddebce411113af77dacef48b386750883baab7a46d0"
+      },
+      "number": 1,
+      "validation": {
+        "rows": 50,
+        "shape": [
+          50,
+          512
+        ],
+        "dtype": "float32",
+        "min_norm": 0.9999998807907104,
+        "max_norm": 1.0000001192092896,
+        "finite": true
+      },
+      "embedding_file": "text_embeddings_chunk_00001.npy",
+      "mapping_file": "text_embedding_map_chunk_00001.parquet",
+      "embedding_sha256": "45951b432ec917d692d670f1f588c37c2add65e000c7339ccc9da48c9904afae",
+      "mapping_sha256": "9acdb95cd42de6e45bc4fcf7c1ae1b037f4327989f3a15c0e8bd3d57e2fbb316"
+    }
+  ],
+  "image_chunk_dir": "/content/drive/MyDrive/MajorProjectAssets/embeddings/visualnews_train/image_chunks/smoke_test",
+  "text_chunk_dir": "/content/drive/MyDrive/MajorProjectAssets/embeddings/visualnews_train/text_chunks/smoke_test",
+  "image_progress_path": "/content/drive/MyDrive/MajorProjectAssets/embeddings/visualnews_train/smoke_test/image_embedding_progress.json",
+  "text_progress_path": "/content/drive/MyDrive/MajorProjectAssets/embeddings/visualnews_train/smoke_test/text_embedding_progress.json",
+  "archive_path_mismatch": false,
+  "preprocessing_exact_match": true,
+  "pilot_artifacts_unchanged": true,
+  "protected_pilot_file_count": 20,
+  "protected_pilot_sha256": {
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/evidence_embedding_map.parquet": "c0684f83b38b243e1e39b17a04fc31afdeed971cf460ac8b35150a9fbcdbd9c2",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/query_embedding_map.parquet": "73162e6fc4cf7f6a94294461dfaa33e3d3bac94ec66ac5535dbba2bfeb02ba10",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/clip_embedding_config.json": "d42200a3522f32b881c7ddcc3eb08a22471520599e99852e719849db54dc0e46",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/query_image_embeddings.npy": "9be25262bac316a9afc86861817c71e5193aa3de4e8c09f51484442ec7fa0c67",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/evidence_text_embeddings.npy": "5526789ecbd46b6abb481dfa5f8b2fdcc34891874f17989874f9709acfa36d27",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/query_text_embeddings.npy": "38d76858b34e4dbd6a7beb3dc1b8b30df9b8b6982c03adc525fc5fea2c0dcb91",
+    "/content/drive/MyDrive/MajorProjectAssets/embeddings/pilot/evidence_image_embeddings.npy": "1cced69abfeec18161e5b464917de0ac48b0e37dbc25614b95e993d7a3c53487",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/evidence_image.index": "9c27bdd140302d9de84d7062663a79263a9f92fd807e86783323b768e1a1cdf2",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/evidence_text.index": "113b1feb9058412543702a9e15accc802da1e77202fcc196a7c8bfa76ac0aec2",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/image_to_image_raw.parquet": "ca2436a749110d12e84d802dc87278eb459c4684cc41b888760478c5747ad91e",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/image_to_image_filtered.parquet": "47f7641536f72f0aae645df9e85410b5b7557c6112291516d1455de6cdc3613a",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/image_to_text_raw.parquet": "1bc59cbe6a0a45b89cc3fe292b147d3b5e4489bd303918390db9dd3d9891ee19",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/image_to_text_filtered.parquet": "ca92924127f8e7fde2bd50c3c42c0edc04c465c52511809a5fc5cb54a4803b4a",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/text_to_text_raw.parquet": "4d095f79ba6200b96fd7c98a1da800765aad487efb6ec00002e18e12e46c217b",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/text_to_text_filtered.parquet": "ad4062f0fe0324bb6e19b8b45980634a5a6cf15dedff84ba59c91e06a5b41c17",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/retrieval_metrics.json": "367be99b78ae3ad66c52b3e382c3b1eb40806e7533d33cfed53fa795da66b607",
+    "/content/drive/MyDrive/MajorProjectAssets/outputs/pilot/faiss_retrieval/retrieval_config.json": "43750a558c2713334175e0df27b6c23fc04f674ac2ef8117ab5fcaeae7bc6d84",
+    "/content/drive/MyDrive/MajorProjectAssets/manifests/pilot_queries.parquet": "837b59d79d1817d5260e9eceddec581ed1356d53dddbb21452852a666def2934",
+    "/content/drive/MyDrive/MajorProjectAssets/manifests/pilot_evidence.parquet": "1bba9b65061dced0d5a3b83def554796ec39f835902e683196d8995e42b7da3e",
+    "/content/drive/MyDrive/MajorProjectAssets/manifests/pilot_image_assets.parquet": "da8de7585b7ab62481cdf2854a53df2fcdc4324725f2b11a3ecd86f2b212c746"
+  },
+  "full_image_run_launched": false,
+  "full_text_run_launched": false
+}
